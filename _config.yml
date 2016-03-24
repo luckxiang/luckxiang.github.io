@@ -1,6 +1,6 @@
 # Site settings
 title: 夏洁，爱你
-header-img: "http://7xs8go.com1.z0.glb.clouddn.com/car.png"
+header-img: "img/green.jpg"
 tagline: "cn"  
 description: "时雨大人|简洁·精致"  
 baseurl: ""
@@ -44,7 +44,7 @@ defaults:
     values:
       layout: "post"
       author: "LuckXiang"
-      header-img: "http://7xs8go.com1.z0.glb.clouddn.com/car.png" # We don't want posts without a header image, that whould mean white on white
+      header-img: "img/green.jpg" # We don't want posts without a header image, that whould mean white on white
 
 # Comments 
 comments :
