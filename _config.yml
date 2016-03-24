@@ -8,7 +8,7 @@ url: "http://bigxiangbaobao"
 
 # About/contact
 owner: 
-  name: " luckxiang"
+  name: " LuckXiang"
   email: zhangxiangcjlu@foxmail.com
   bio: "弄潮儿何惧风和浪"
 
@@ -43,8 +43,8 @@ defaults:
       type: "posts"
     values:
       layout: "post"
-      author: "CnFeat"
-      header-img: "img/green.jpg" # We don't want posts without a header image, that whould mean white on white
+      author: "LuckXiang"
+      header-img: "http://7xs8go.com1.z0.glb.clouddn.com/car.png" # We don't want posts without a header image, that whould mean white on white
 
 # Comments 
 comments :
