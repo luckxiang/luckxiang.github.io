@@ -2,7 +2,7 @@
 layout: page
 title: "About"
 description: "精致＊简洁 "
-header-img: "img/green.jpg"
+header-img: "img/semantic.jpg"
 ---
 
 
@@ -13,14 +13,22 @@ header-img: "img/green.jpg"
 我是时雨大人
 
 
-###坚信
+### 坚信
+
+ - 智力乃上天所赐，智慧靠后天修养
+ - 永远不要只满足事物的表象，要勇于探索未知的可能
+ - 以和为贵，修养为先
 
 
 
 
-###关注：
+### 关注：
 
-
+ - 嵌入式
+ - python
+ - 社会学
+ - 元认知
+ - 智能硬件
 
 
 

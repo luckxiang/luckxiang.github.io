@@ -1,19 +1,19 @@
-##说明
+## 说明
 
 
 此博客 fork 自 [Azeril](http://azeril.me/)，参考 [陈素封](http://cnfeat.com),感谢。
 
-##小河夜话
+## 大象宝宝
 
-我是时雨大人，博客：[小河夜话](http://bigxiangbaobao.com)
+我是时雨大人，博客：[大象宝宝](http://bigxiangbaobao.com)
 
 
 
-##坚信
+## 坚信
 
  - 智力乃上天所赐，智慧靠后天修养
  - 永远不要只满足事物的表象，要勇于探索未知的可能
-
+ - 以和为贵，修养为先
 
 
 
