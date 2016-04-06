@@ -7,7 +7,7 @@ header-img: "img/semantic.jpg"
 
 
 <center>
-    <p><img src="http://7xlfkx.com1.z0.glb.clouddn.com/white2.jpg" align="center"></p>
+    <p><img src="http://7xs8go.com1.z0.glb.clouddn.com/bigxiang.png" align="center"></p>
 </center>
 
 我是时雨大人
@@ -25,9 +25,9 @@ header-img: "img/semantic.jpg"
 
  - 嵌入式
  - python
- - 社会学
  - 元认知
  - 智能硬件
+ - linux
 
 
 
