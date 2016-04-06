@@ -2,7 +2,7 @@
 layout: page
 title: "Tags"
 description: "文章关键字索引！！！"  
-header-img: "img/facebook.jpg"  
+header-img: "img/twitter.jpg"  
 ---
 
 ### 本页使用方法
