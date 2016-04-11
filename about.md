@@ -30,7 +30,7 @@ header-img: "img/semantic.jpg"
  - 元认知
  - 智能硬件
  - linux
- - 厨艺
+ - 厨房
 
 
 
