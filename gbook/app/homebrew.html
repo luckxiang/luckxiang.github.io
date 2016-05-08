@@ -37,7 +37,7 @@
         
     
     
-    <link rel="next" href="./apt-get.html" />
+    <link rel="next" href="./cask.html" />
     
     
     <link rel="prev" href="./index.html" />
@@ -53,7 +53,7 @@
         data-chapter-title="Homebrew"
         data-filepath="homebrew.md"
         data-basepath="."
-        data-revision="Thu May 05 2016 20:27:41 GMT+0800 (CST)"
+        data-revision="Sun May 08 2016 12:37:34 GMT+0800 (CST)"
         data-innerlanguage="">
     
 
@@ -94,6 +94,27 @@
                         Homebrew
                     </a>
             
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1" data-path="cask.html">
+            
+                
+                    <a href="./cask.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                        Homebrew Cask
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
             
         </li>
     
@@ -161,6 +182,47 @@
                     <section class="normal" id="section-">
                     
                         <h1 id="homebrew">Homebrew</h1>
+<p>Mac OS X &#x4E0A;&#x6700;&#x597D;&#x7528;&#x7684;&#x5305;&#x7BA1;&#x7406;&#x5668;&#xFF0C;&#x529F;&#x80FD;&#x548C;linux &#x4E0B;&#x7684;apt-get&#x5DEE;&#x4E0D;&#x591A;&#xFF0C;&#x5B89;&#x88C5;&#x5176;&#x4ED6;&#x8F6F;&#x4EF6;&#x4E4B;&#x524D;&#x9996;&#x5148;&#x5B89;&#x88C5;homebrew&#xFF0C;&#x5C45;&#x5BB6;&#x65C5;&#x884C;&#x5FC5;&#x5907;&#x3002;</p>
+<hr>
+<h5 id="&#x8FD0;&#x884C;&#x73AF;&#x5883;">&#x8FD0;&#x884C;&#x73AF;&#x5883;</h5>
+<p>Mac OS X</p>
+<h5 id="&#x5B89;&#x88C5;">&#x5B89;&#x88C5;</h5>
+<ol>
+<li>&#x5148;&#x5728;&#x5E94;&#x7528;&#x5546;&#x5E97;&#x88C5;&#x597D;Xcode</li>
+<li>&#x5B89;&#x88C5;Command Line Tools for Xcode&#xFF0C;&#x5148;&#x8DF3;&#x8FC7;&#x8FD9;&#x6B65;&#x4E5F;&#x53EF;&#x4EE5;&#xFF0C;&#x540E;&#x8FB9;&#x5B89;&#x88C5;homebrew&#x4F1A;&#x63D0;&#x793A;&#x5B89;&#x88C5;&#x6B64;&#x5DE5;&#x5177;&#x3002;</li>
+<li><p>&#x5B89;&#x88C5;homebrew  </p>
+<pre><code>ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;
+</code></pre></li>
+<li><p>&#x6267;&#x884C;&#x547D;&#x4EE4;&#x68C0;&#x67E5;&#x5B89;&#x88C5;&#x662F;&#x5426;ok</p>
+<pre><code>brew doctor
+</code></pre></li>
+</ol>
+<h5 id="&#x4F7F;&#x7528;">&#x4F7F;&#x7528;</h5>
+<ol>
+<li><p>&#x5B89;&#x88C5;&#x8F6F;&#x4EF6;<br>&#x66F4;&#x65B0;homebrew&#x81EA;&#x8EAB;-&gt;&#x68C0;&#x67E5;homebrew&#x5DE5;&#x4F5C;&#x662F;&#x5426;&#x6B63;&#x5E38;-&gt;&#x641C;&#x7D22;&#x8F6F;&#x4EF6;-&gt;&#x68C0;&#x67E5;&#x8F6F;&#x4EF6;&#x4FE1;&#x606F;&#xFF0C;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x6216;&#x8005;&#x9700;&#x8981;&#x989D;&#x5916;&#x914D;&#x7F6E;&#x7684;&#x5730;&#x65B9;-&gt;&#x5B89;&#x88C5;  </p>
+<pre><code>brew update
+brew doctor
+brew search foo
+brew info FORMULA
+brew install FORMULA
+&quot;Some configuration&quot;
+</code></pre></li>
+<li><p>&#x5378;&#x8F7D;&#x8F6F;&#x4EF6;<br>&#x67E5;&#x770B;&#x5DF2;&#x5B89;&#x88C5;&#x8F6F;&#x4EF6;&#x5217;&#x8868;-&gt;&#x5378;&#x8F7D;&#x9700;&#x8981;&#x5378;&#x8F7D;&#x7684;&#x8F6F;&#x4EF6;&#x5305;  </p>
+<pre><code>brew list
+brew uninstall FORMULA
+</code></pre></li>
+<li><p>&#x66F4;&#x65B0;&#x8F6F;&#x4EF6;<br>&#x66F4;&#x65B0;homebrew&#x81EA;&#x8EAB;-&gt;&#x67E5;&#x770B;&#x53EF;&#x66F4;&#x65B0;&#x8F6F;&#x4EF6;&#x5217;&#x8868;-&gt;&#x66F4;&#x65B0;  </p>
+<pre><code>brew update
+brew outdated
+brew upgrade FORMULA
+</code></pre></li>
+<li><p>&#x66F4;&#x65B0;homebrew&#x81EA;&#x8EAB;  </p>
+<pre><code>brew update
+</code></pre></li>
+<li><p>&#x5177;&#x4F53;&#x547D;&#x4EE4;&#x4F7F;&#x7528;&#x4ECB;&#x7ECD;</p>
+<pre><code>man brew
+</code></pre></li>
+</ol>
 
                     
                     </section>
@@ -174,7 +236,7 @@
         <a href="./index.html" class="navigation navigation-prev " aria-label="Previous page: Introduction"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="./apt-get.html" class="navigation navigation-next " aria-label="Next page: apt-get"><i class="fa fa-angle-right"></i></a>
+        <a href="./cask.html" class="navigation navigation-next " aria-label="Next page: Homebrew Cask"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
