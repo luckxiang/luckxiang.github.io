@@ -17,5 +17,5 @@ with open(filename, 'w') as f:
     f.write('tags: [%s]\n' % tags)
     f.write('description: \n')
     f.write('---\n\n\n')
-sys = 'vi  %s' % filename
+sys = 'vi  "%s"' % filename
 os.system(sys)
