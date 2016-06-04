@@ -15,8 +15,8 @@ description:
 #include <stdio.h>
 int main(void)
 {
-    char c=-1;
-    if(c<200){
+    char c = -1;
+    if(c < 200){
         printf("signed char\n");
     }
     else
@@ -31,15 +31,15 @@ int main(void)
 C语言是弱类型还没什么，如果在C++中，你可以试一试，用
 
 ```
-char *p="abcd";
+char *p = "abcd";
 ```
 
 是可以通过编译的,  
 但如果用
 
 ```
-signed char *p="abcd";
-unsigned char *pp="abcd";
+signed char *p = "abcd";
+unsigned char *pp = "abcd";
 ```
 
 都是不能通过编译的。
