@@ -14,7 +14,7 @@ owner:
 
 # Data
 gavatar: http://dreamofbook.qiniudn.com/Az..png
-favicon: http://7xs8go.com1.z0.glb.clouddn.com/favicon.ico
+favicon: /img/favicon.ico
 
 douban_username:  
 twitter_username: 
@@ -46,7 +46,7 @@ defaults:
       author: "LuckXiang"
       header-img: "http://7xs8go.com1.z0.glb.clouddn.com/orange.jpg" # We don't want posts without a header image, that whould mean white on white
 
-# Comments 
+# Commentsco 
 comments :
   provider : duoshuo
   duoshuo :
