@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
-<title>gitbook editor | 时雨大人的软件使用纪录</title>
+<title>Zsh 终端shell | 时雨大人的软件使用纪录</title>
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
 <meta content="" name="description"/>
 <meta content="GitBook 2.6.7" name="generator"/>
@@ -17,11 +17,10 @@
 <link href="gitbook/plugins/gitbook-plugin-highlight/website.css" rel="stylesheet"/>
 <link href="gitbook/plugins/gitbook-plugin-search/search.css" rel="stylesheet"/>
 <link href="gitbook/plugins/gitbook-plugin-fontsettings/website.css" rel="stylesheet"/>
-<link href="./wireshark.html" rel="next"/>
-<link href="./gitbook.html" rel="prev"/>
+<link href="./bcompare.html" rel="prev"/>
 </head>
 <body>
-<div class="book" data-basepath="." data-chapter-title="gitbook editor" data-filepath="gitbookeditor.md" data-innerlanguage="" data-level="6.1" data-revision="Sat Jun 11 2016 00:53:30 GMT+0800 (CST)">
+<div class="book" data-basepath="." data-chapter-title="Zsh 终端shell" data-filepath="zsh.md" data-innerlanguage="" data-level="9" data-revision="Sat Jun 11 2016 00:53:30 GMT+0800 (CST)">
 <div class="book-summary">
 <nav role="navigation">
 <ul class="summary">
@@ -90,7 +89,7 @@
                         gitbook 书写工具
                     </a>
 <ul class="articles">
-<li class="chapter active" data-level="6.1" data-path="gitbookeditor.html">
+<li class="chapter " data-level="6.1" data-path="gitbookeditor.html">
 <a href="./gitbookeditor.html">
 <i class="fa fa-check"></i>
 <b>6.1.</b>
@@ -116,7 +115,7 @@
                         Beyond Compare 文本比较
                     </a>
 </li>
-<li class="chapter " data-level="9" data-path="zsh.html">
+<li class="chapter active" data-level="9" data-path="zsh.html">
 <a href="./zsh.html">
 <i class="fa fa-check"></i>
 <b>9.</b>
@@ -145,21 +144,32 @@
 <div class="page-wrapper" role="main" tabindex="-1">
 <div class="page-inner">
 <section class="normal" id="section-">
-<h1 id="gitbook-editor">gitbook editor</h1>
-<p>gitbook官方编辑器，自带版本管理功能，个人认为挺好用。</p>
-<hr/>
+<h1 id="zsh-终端shell">Zsh 终端shell</h1>
+<p>Zsh是一款强大的shell工具，可以帮助你高效编写和执行命令，bash替代品。使用前需要配置，不然很难用。</p>
 <h5 id="运行环境">运行环境</h5>
-<p>Mac OS X</p>
+<p>Mac OS X &amp;&amp; Linux</p>
 <h5 id="安装">安装</h5>
-<p>官网下载dmg包</p>
-<h5 id="使用">使用</h5>
-<p>略</p>
+<p>Linux  </p>
+<pre><code>sudo apt-get install zsh
+</code></pre><p>Mac</p>
+<pre><code>brew install zsh
+</code></pre><h5 id="使用">使用</h5>
+<p>切换到zsh  </p>
+<pre><code>chsh -s /bin/zsh
+</code></pre><p>配置，安装oh-my-zsh  </p>
+<pre><code>sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+cp ~/.zshrc ~/.zshrc.orig
+cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
+</code></pre><p>添加插件 ，打开配置文件.zshrc，参考如下修改  </p>
+<pre><code>plugins=(git osx)
+</code></pre><p>修改完毕执行  </p>
+<pre><code>source ~/.zshrc
+</code></pre><p>详细配置信息见<a href="https://github.com/robbyrussell/oh-my-zsh" target="_blank">oh-my-zsh</a></p>
 </section>
 </div>
 </div>
 </div>
-<a aria-label="Previous page: gitbook 书写工具" class="navigation navigation-prev " href="./gitbook.html"><i class="fa fa-angle-left"></i></a>
-<a aria-label="Next page: wireshark 抓包分析" class="navigation navigation-next " href="./wireshark.html"><i class="fa fa-angle-right"></i></a>
+<a aria-label="Previous page: Beyond Compare 文本比较" class="navigation navigation-prev navigation-unique" href="./bcompare.html"><i class="fa fa-angle-left"></i></a>
 </div>
 </div>
 <script src="gitbook/app.js"></script>
