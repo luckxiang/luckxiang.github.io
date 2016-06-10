@@ -30,10 +30,7 @@ header-img: "http://7xs8go.com1.z0.glb.clouddn.com/semantic.jpg"
  - 元认知
  - 智能硬件
  - linux
- - 厨房
 
-### 联系方式
-GitHub: [https://github.com/luckxiang](https://github.com/luckxiang)
 
 
 
