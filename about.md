@@ -2,7 +2,7 @@
 layout: page
 title: "About"
 description: "简洁＊精致 "
-header-img: "img/semantic.jpg"
+header-img: "http://7xs8go.com1.z0.glb.clouddn.com/semantic.jpg"
 ---
 
 

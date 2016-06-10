@@ -1,6 +1,6 @@
 # Site settings
 title: 大象宝宝
-header-img: "img/orange.jpg"
+header-img: "http://7xs8go.com1.z0.glb.clouddn.com/orange.jpg"
 tagline: "cn"  
 description: "时雨大人|简洁·精致"  
 baseurl: ""
@@ -14,7 +14,7 @@ owner:
 
 # Data
 gavatar: http://dreamofbook.qiniudn.com/Az..png
-favicon: /img/favicon.ico
+favicon: http://7xs8go.com1.z0.glb.clouddn.com/favicon.ico
 
 douban_username:  
 twitter_username: 
@@ -44,7 +44,7 @@ defaults:
     values:
       layout: "post"
       author: "LuckXiang"
-      header-img: "img/orange.jpg" # We don't want posts without a header image, that whould mean white on white
+      header-img: "http://7xs8go.com1.z0.glb.clouddn.com/orange.jpg" # We don't want posts without a header image, that whould mean white on white
 
 # Comments 
 comments :

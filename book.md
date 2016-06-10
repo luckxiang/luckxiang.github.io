@@ -2,7 +2,7 @@
 layout: page
 title: "Book"
 description: "战战兢兢，如履薄冰，如临深渊   "
-header-img: "img/zhihu.jpg"
+header-img: "http://7xs8go.com1.z0.glb.clouddn.com/zhihu.jpg"
 ---
 
 
