@@ -32,9 +32,7 @@ header-img: "http://7xs8go.com1.z0.glb.clouddn.com/semantic.jpg"
  - linux
 
 ### 技能树
-借助脑图规划自己的学习路线，点击查看。
-
-[luckxiang的技能树](http://naotu.baidu.com/file/da4c09daaf0f2378bb957952370aba0a?token=7fe343acd9207b91)
+借助脑图规划自己的学习路线，点击查看: [**luckxiang的技能树**](http://naotu.baidu.com/file/da4c09daaf0f2378bb957952370aba0a?token=7fe343acd9207b91)
 
 
 

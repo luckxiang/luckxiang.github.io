@@ -20,7 +20,7 @@
 <link href="./bcompare.html" rel="prev"/>
 </head>
 <body>
-<div class="book" data-basepath="." data-chapter-title="Zsh 终端shell" data-filepath="zsh.md" data-innerlanguage="" data-level="9" data-revision="Sat Jun 11 2016 00:53:30 GMT+0800 (CST)">
+<div class="book" data-basepath="." data-chapter-title="Zsh 终端shell" data-filepath="zsh.md" data-innerlanguage="" data-level="9" data-revision="Sat Jun 11 2016 23:10:15 GMT+0800 (CST)">
 <div class="book-summary">
 <nav role="navigation">
 <ul class="summary">
@@ -160,8 +160,15 @@
 <pre><code>sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 cp ~/.zshrc ~/.zshrc.orig
 cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
-</code></pre><p>添加插件 ，打开配置文件.zshrc，参考如下修改  </p>
-<pre><code>plugins=(git osx)
+</code></pre><p>autojump插件必须添加，zsh和autojump组合才是最强王者。先下载   </p>
+<p>Linux</p>
+<pre><code>sudo apt-get install autojump
+</code></pre><p>mac</p>
+<pre><code>brew install autojump
+</code></pre><p>然后把以下代码添加到.zshrc   </p>
+<pre><code>[[ -s ~/.autojump/etc/profile.d/autojump.sh ]] &amp;&amp; . ~/.autojump/etc/profile.d/autojump.sh
+</code></pre><p>最后添加需要的插件 ，打开配置文件.zshrc，参考如下修改  </p>
+<pre><code>plugins=(git osx autojump)
 </code></pre><p>修改完毕执行  </p>
 <pre><code>source ~/.zshrc
 </code></pre><p>详细配置信息见<a href="https://github.com/robbyrussell/oh-my-zsh" target="_blank">oh-my-zsh</a></p>
