@@ -35,6 +35,6 @@ header-img: "http://7xs8go.com1.z0.glb.clouddn.com/semantic.jpg"
 借助脑图规划自己的学习路线，点击查看: [**luckxiang的技能树**](http://naotu.baidu.com/file/da4c09daaf0f2378bb957952370aba0a?token=7fe343acd9207b91)
 
 
-###转载许可
-本博客的内容由[时雨大人](http://www.bigxiangbaobao.com)创作，采用[知识共享署名-非商业性使用 4.0 国际许可协议](http://creativecommons.org/licenses/by-nc/4.0/)发布
+###转载许可    
+本博客的内容由[**时雨大人**](http://www.bigxiangbaobao.com)创作，采用[**知识共享署名-非商业性使用 4.0 国际许可协议**](http://creativecommons.org/licenses/by-nc/4.0/)发布
 
