@@ -1,0 +1,96 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<title>UNIX 基础 | 《UNIX环境高级编程》学习笔记</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="" name="description"/>
+<meta content="GitBook 2.6.7" name="generator"/>
+<meta content="true" name="HandheldFriendly"/>
+<meta content="width=device-width, initial-scale=1, user-scalable=no" name="viewport"/>
+<meta content="yes" name="apple-mobile-web-app-capable"/>
+<meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+<link href="gitbook/images/apple-touch-icon-precomposed-152.png" rel="apple-touch-icon-precomposed" sizes="152x152"/>
+<link href="gitbook/images/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+<link href="gitbook/style.css" rel="stylesheet"/>
+<link href="gitbook/plugins/gitbook-plugin-highlight/website.css" rel="stylesheet"/>
+<link href="gitbook/plugins/gitbook-plugin-search/search.css" rel="stylesheet"/>
+<link href="gitbook/plugins/gitbook-plugin-fontsettings/website.css" rel="stylesheet"/>
+<link href="./index.html" rel="prev"/>
+</head>
+<body>
+<div class="book" data-basepath="." data-chapter-title="UNIX 基础" data-filepath="unixbase.md" data-innerlanguage="" data-level="1" data-revision="Mon Jun 13 2016 00:12:18 GMT+0800 (CST)">
+<div class="book-summary">
+<nav role="navigation">
+<ul class="summary">
+<li class="chapter " data-level="0" data-path="index.html">
+<a href="./index.html">
+<i class="fa fa-check"></i>
+                        
+                        Introduction
+                    </a>
+</li>
+<li class="chapter active" data-level="1" data-path="unixbase.html">
+<a href="./unixbase.html">
+<i class="fa fa-check"></i>
+<b>1.</b>
+                        
+                        UNIX 基础
+                    </a>
+</li>
+<li class="divider"></li>
+<li>
+<a class="homepage-back" href="http://www.bigxiangbaobao.com" target="_self">
+                        Back to Homepage</a>
+</li>
+</ul>
+</nav>
+</div>
+<div class="book-body">
+<div class="body-inner">
+<div class="book-header" role="navigation">
+<!-- Actions Left -->
+<!-- Title -->
+<h1>
+<i class="fa fa-circle-o-notch fa-spin"></i>
+<a href="./">《UNIX环境高级编程》学习笔记</a>
+</h1>
+</div>
+<div class="page-wrapper" role="main" tabindex="-1">
+<div class="page-inner">
+<section class="normal" id="section-">
+<h1 id="unix-基础">UNIX 基础</h1>
+<hr/>
+<p>开始之前，在此回顾一下大学所学的操作系统的概念，操作系统是用户和计算机的接口，也是计算机硬件和其他软件的接口。它管理着系统的资源并为程序提供运行环境。</p>
+<h4 id="unix体系结构">UNIX体系结构</h4>
+<p>UNIX的体系结构由内到外可以分为四层，第一层是内核，它是系统的核心，提供操作系统最基本的功能，主要是文件系统，设备驱动，存储管理，进程管理，网络这几块。内核的接口被称为系统调用，这是第二层，也是接下来学习的重点，这部分的知识其实和操作系统原理互相印证，这也是我选择学习这本书的重要原因。第三层是shell和公用函数库，shell是一个命令行解释器，它从用户或者文件中读取命令，然后解释执行。shell有自己的语法，我们可以编写脚本来批量处理任务。shell解释器有多种版本，系统一般默认的是bash，目前我使用的是zsh，这是一个比bash更强的解释器。公用函数库就是我们常说的c库，他和系统调用有很大的不同，这个稍后再讲，第四层就是我们所说的应用程序，它是建立在shell，库函数，系统调用这三个东西上的。</p>
+<h4 id="系统调用和库函数的不同">系统调用和库函数的不同</h4>
+<p>所有的操作系统都提供多种服务的接口，这样程序才能向内核请求服务，各种版本的unix实现都提供了一组良好定义，数量有限，直接进入内核的接口。这些接口就是系统调用。UNIX使用的技术是为每一个系统调用在C库中设置一个具有同样名字的函数，用户进程用标准C来调用这些函数，然后这些函数有调用系统调用来获得相应的内核服务，当然，这些库函数也可能不需要系统调用，比如strcpy，atoi。</p>
+<ul>
+<li>系统调用和库函数在实现上有着本质的区别，但是对用户来说区别并不重要，两者都是为用户提供服务，一般来说，我们可以替换库函数，而系统调用是不能被替换的。  </li>
+<li>系统调用工作在内核层次，库函数在应用层次，很多库函数会调用系统调用，比如存储空间分配，系统调用sbrk只是分配一个空间给进程，而库函数malloc则在用户层次管理这一个空间。</li>
+<li>系统调用通常只提供一个最小调用，而库函数通常提供更复杂的功能。</li>
+</ul>
+<hr/>
+<p>百日践行第1天</p>
+</section>
+</div>
+</div>
+</div>
+<a aria-label="Previous page: Introduction" class="navigation navigation-prev navigation-unique" href="./index.html"><i class="fa fa-angle-left"></i></a>
+</div>
+</div>
+<script src="gitbook/app.js"></script>
+<script src="gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+<script src="gitbook/plugins/gitbook-plugin-search/search.js"></script>
+<script src="gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+<script src="gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"highlight":{},"search":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+</body>
+</html>
