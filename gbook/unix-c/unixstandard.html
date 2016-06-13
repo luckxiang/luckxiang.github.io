@@ -1,0 +1,207 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<title>UNIX标准及其实现 | 《UNIX环境高级编程》学习笔记</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="" name="description"/>
+<meta content="GitBook 2.6.7" name="generator"/>
+<meta content="true" name="HandheldFriendly"/>
+<meta content="width=device-width, initial-scale=1, user-scalable=no" name="viewport"/>
+<meta content="yes" name="apple-mobile-web-app-capable"/>
+<meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+<link href="gitbook/images/apple-touch-icon-precomposed-152.png" rel="apple-touch-icon-precomposed" sizes="152x152"/>
+<link href="gitbook/images/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+<link href="gitbook/style.css" rel="stylesheet"/>
+<link href="gitbook/plugins/gitbook-plugin-highlight/website.css" rel="stylesheet"/>
+<link href="gitbook/plugins/gitbook-plugin-search/search.css" rel="stylesheet"/>
+<link href="gitbook/plugins/gitbook-plugin-fontsettings/website.css" rel="stylesheet"/>
+<link href="./unixbase.html" rel="prev"/>
+</head>
+<body>
+<div class="book" data-basepath="." data-chapter-title="UNIX标准及其实现" data-filepath="unixstandard.md" data-innerlanguage="" data-level="2" data-revision="Tue Jun 14 2016 01:10:02 GMT+0800 (CST)">
+<div class="book-summary">
+<nav role="navigation">
+<ul class="summary">
+<li class="chapter " data-level="0" data-path="index.html">
+<a href="./index.html">
+<i class="fa fa-check"></i>
+                        
+                        Introduction
+                    </a>
+</li>
+<li class="chapter " data-level="1" data-path="unixbase.html">
+<a href="./unixbase.html">
+<i class="fa fa-check"></i>
+<b>1.</b>
+                        
+                        UNIX 基础
+                    </a>
+</li>
+<li class="chapter active" data-level="2" data-path="unixstandard.html">
+<a href="./unixstandard.html">
+<i class="fa fa-check"></i>
+<b>2.</b>
+                        
+                        UNIX标准及其实现
+                    </a>
+</li>
+<li class="divider"></li>
+<li>
+<a class="homepage-back" href="http://www.bigxiangbaobao.com" target="_self">
+                        Back to Homepage</a>
+</li>
+</ul>
+</nav>
+</div>
+<div class="book-body">
+<div class="body-inner">
+<div class="book-header" role="navigation">
+<!-- Actions Left -->
+<!-- Title -->
+<h1>
+<i class="fa fa-circle-o-notch fa-spin"></i>
+<a href="./">《UNIX环境高级编程》学习笔记</a>
+</h1>
+</div>
+<div class="page-wrapper" role="main" tabindex="-1">
+<div class="page-inner">
+<section class="normal" id="section-">
+<h1 id="unix标准及其实现">UNIX标准及其实现</h1>
+<hr/>
+<p>标准化主要是为了方便程序在不同版本之间移植，了解这一部分可以帮助我们写出可移植的C程序，对交叉编译也能有更深一步的认识。这里简要介绍三个标准，ISO C，POSIX，Single UNIX Specification。</p>
+<h4 id="iso-c">ISO C</h4>
+<p>ISO C 标准的意图是提供C程序的可移植性，使其能适合大量的操作系统，而不仅仅是UNIX，此标准不仅定义了C语言的语法和语义，还定义了C标准库，现在所有的UNIX系统都提供C标准中定义的库函数，所以该标准库非常重要，按照这个标准定义的头文件可将ISO C库分为24个区，下边要介绍的POIX.1标准包含了这些头文件以及另外一些头文件，因此可以说POIX.1兼容ISO C。需要注意的是ISO C头文件依赖于操作系统所配置的版本。下面是这24四个头文件的列表：   </p>
+<table>
+<thead>
+<tr>
+<th>头文件</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&lt;assert.h&gt;</td>
+<td>验证程序断言</td>
+</tr>
+<tr>
+<td>&lt;complex.h&gt;</td>
+<td>复数算术运算支持</td>
+</tr>
+<tr>
+<td>&lt;ctype.h&gt;</td>
+<td>字符分类和映射支持</td>
+</tr>
+<tr>
+<td>&lt;error.h&gt;</td>
+<td>出错码</td>
+</tr>
+<tr>
+<td>&lt;fenv.h&gt;</td>
+<td>浮点环境</td>
+</tr>
+<tr>
+<td>&lt;float.h&gt;</td>
+<td>浮点常量及特性</td>
+</tr>
+<tr>
+<td>&lt;inttypes.h&gt;</td>
+<td>整型格式变换</td>
+</tr>
+<tr>
+<td>&lt;iso646.h&gt;</td>
+<td>赋值，关系及一元操作宏符</td>
+</tr>
+<tr>
+<td>&lt;limits.h&gt;</td>
+<td>实现常量</td>
+</tr>
+<tr>
+<td>&lt;locale.h&gt;</td>
+<td>本地化类别及相关定义</td>
+</tr>
+<tr>
+<td>&lt;math.h&gt;</td>
+<td>数学函数，类型声明及常量</td>
+</tr>
+<tr>
+<td>&lt;setjump.h&gt;</td>
+<td>非局部goto</td>
+</tr>
+<tr>
+<td>&lt;signal.h&gt;</td>
+<td>信号</td>
+</tr>
+<tr>
+<td>&lt;stdarg.h&gt;</td>
+<td>可变长度参数表</td>
+</tr>
+<tr>
+<td>&lt;stdbool.h&gt;</td>
+<td>布尔类型和值</td>
+</tr>
+<tr>
+<td>&lt;stddef.h&gt;</td>
+<td>标准定义</td>
+</tr>
+<tr>
+<td>&lt;stdinit.h&gt;</td>
+<td>整型</td>
+</tr>
+<tr>
+<td>&lt;stdio.h&gt;</td>
+<td>标准IO库</td>
+</tr>
+<tr>
+<td>&lt;stdlib.h&gt;</td>
+<td>实用函数</td>
+</tr>
+<tr>
+<td>&lt;string.h&gt;</td>
+<td>字符串操作</td>
+</tr>
+<tr>
+<td>&lt;tgmath.h&gt;</td>
+<td>通用类型数学宏</td>
+</tr>
+<tr>
+<td>&lt;time.h&gt;</td>
+<td>时间和日期</td>
+</tr>
+<tr>
+<td>&lt;wchar.h&gt;</td>
+<td>扩充的多字节和宽字符支持</td>
+</tr>
+<tr>
+<td>&lt; wctype.h&gt;</td>
+<td>宽字符分类和映射支持</td>
+</tr>
+</tbody>
+</table>
+<h4 id="posix">POSIX</h4>
+<p>POSIX指的是可移植操作系统接口，他有多个标准，本书采用的是1003.1(POSIX.1)，这个标准的目的就是提升应用程序在各种UNIX环境之间的可移植性，它定义了符合POSIX的操作系统必须提供的各种服务，除了UNIX和类UNIX系统，还有其他一些操作系统也兼容POSIX标准。下面是POSIX指定的必需的和可选的头文件：</p>
+<h4 id="single-unix-specification">Single UNIX Specification</h4>
+<p>这是POSIX.1的超集</p>
+<hr/>
+<p>百日践行第2天</p>
+</section>
+</div>
+</div>
+</div>
+<a aria-label="Previous page: UNIX 基础" class="navigation navigation-prev navigation-unique" href="./unixbase.html"><i class="fa fa-angle-left"></i></a>
+</div>
+</div>
+<script src="gitbook/app.js"></script>
+<script src="gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+<script src="gitbook/plugins/gitbook-plugin-search/search.js"></script>
+<script src="gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+<script src="gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"highlight":{},"search":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+</body>
+</html>
