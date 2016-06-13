@@ -36,5 +36,5 @@ header-img: "http://7xs8go.com1.z0.glb.clouddn.com/semantic.jpg"
 
 
 ### 转载许可    
-本博客的内容由[**时雨大人**](http://www.bigxiangbaobao.com)创作，采用[**知识共享署名-非商业性使用 4.0 国际许可协议**](http://creativecommons.org/licenses/by-nc/4.0/)发布
+本博客的文章和book由[**时雨大人**](http://www.bigxiangbaobao.com)创作，采用[**知识共享署名-非商业性使用 4.0 国际许可协议**](http://creativecommons.org/licenses/by-nc/4.0/)发布
 
