@@ -14,7 +14,7 @@ book 主要是我用gitbook记录的知识地图。沿着自己留下的脚印�
 ### 目录：
 
 1.[《时雨大人的软件使用记录》](/gbook/app)    
-2.[《UNIX环境高级编程》学习笔记](/gbook/unix-c)
+2.[《UNIX环境高级编程学习笔记》](/gbook/unix-c)
 
 
 

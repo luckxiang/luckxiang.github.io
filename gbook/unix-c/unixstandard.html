@@ -17,10 +17,11 @@
 <link href="gitbook/plugins/gitbook-plugin-highlight/website.css" rel="stylesheet"/>
 <link href="gitbook/plugins/gitbook-plugin-search/search.css" rel="stylesheet"/>
 <link href="gitbook/plugins/gitbook-plugin-fontsettings/website.css" rel="stylesheet"/>
+<link href="./fileio.html" rel="next"/>
 <link href="./unixbase.html" rel="prev"/>
 </head>
 <body>
-<div class="book" data-basepath="." data-chapter-title="UNIX标准及其实现" data-filepath="unixstandard.md" data-innerlanguage="" data-level="2" data-revision="Tue Jun 14 2016 01:10:02 GMT+0800 (CST)">
+<div class="book" data-basepath="." data-chapter-title="UNIX标准及其实现" data-filepath="unixstandard.md" data-innerlanguage="" data-level="2" data-revision="Wed Jun 15 2016 00:21:50 GMT+0800 (CST)">
 <div class="book-summary">
 <nav role="navigation">
 <ul class="summary">
@@ -45,6 +46,14 @@
 <b>2.</b>
                         
                         UNIX标准及其实现
+                    </a>
+</li>
+<li class="chapter " data-level="3" data-path="fileio.html">
+<a href="./fileio.html">
+<i class="fa fa-check"></i>
+<b>3.</b>
+                        
+                        文件IO
                     </a>
 </li>
 <li class="divider"></li>
@@ -180,16 +189,178 @@
 </tbody>
 </table>
 <h4 id="posix">POSIX</h4>
-<p>POSIX指的是可移植操作系统接口，他有多个标准，本书采用的是1003.1(POSIX.1)，这个标准的目的就是提升应用程序在各种UNIX环境之间的可移植性，它定义了符合POSIX的操作系统必须提供的各种服务，除了UNIX和类UNIX系统，还有其他一些操作系统也兼容POSIX标准。下面是POSIX指定的必需的和可选的头文件：</p>
+<p>POSIX指的是可移植操作系统接口，他有多个标准，本书采用的是1003.1(POSIX.1)，这个标准的目的就是提升应用程序在各种UNIX环境之间的可移植性，它定义了符合POSIX的操作系统必须提供的各种服务，除了UNIX和类UNIX系统，还有其他一些操作系统也兼容POSIX标准。下面是POSIX的必选头文件，可选头文件后续补充。此外POSIX还定义了很多涉及操作系统的限制常量，这在实际使用中需要注意的。</p>
+<h5 id="必选头文件">必选头文件</h5>
+<table>
+<thead>
+<tr>
+<th>头文件</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&lt;aio.h&gt;</td>
+<td>异步IO</td>
+</tr>
+<tr>
+<td>&lt;cpio.h&gt;</td>
+<td>cpio归档值</td>
+</tr>
+<tr>
+<td>&lt;dirent.h&gt;</td>
+<td>目录项</td>
+</tr>
+<tr>
+<td>&lt;dlfcn.h&gt;</td>
+<td>动态链接</td>
+</tr>
+<tr>
+<td>&lt;fcntl.h&gt;</td>
+<td>文件控制</td>
+</tr>
+<tr>
+<td>&lt;fnmatch.h&gt;</td>
+<td>文件名匹配类型</td>
+</tr>
+<tr>
+<td>&lt;glob.h&gt;</td>
+<td>路径名模式匹配与生成</td>
+</tr>
+<tr>
+<td>&lt;grp.h&gt;</td>
+<td>组文件</td>
+</tr>
+<tr>
+<td>&lt;iconv.h&gt;</td>
+<td>代码集变换实用程序</td>
+</tr>
+<tr>
+<td>&lt;langinfo.h&gt;</td>
+<td>语言信息常量</td>
+</tr>
+<tr>
+<td>&lt;monetary.h&gt;</td>
+<td>货币类型与函数</td>
+</tr>
+<tr>
+<td>&lt;netdb.h&gt;</td>
+<td>网络数据库操作</td>
+</tr>
+<tr>
+<td>&lt;nl_type.h&gt;</td>
+<td>消息类</td>
+</tr>
+<tr>
+<td>&lt;poll.h&gt;</td>
+<td>投票函数</td>
+</tr>
+<tr>
+<td>&lt;pthread.h&gt;</td>
+<td>线程</td>
+</tr>
+<tr>
+<td>&lt;pwd.h&gt;</td>
+<td>口令文件</td>
+</tr>
+<tr>
+<td>&lt;regex.h&gt;</td>
+<td>正则表达式</td>
+</tr>
+<tr>
+<td>&lt;sched.h&gt;</td>
+<td>执行调度</td>
+</tr>
+<tr>
+<td>&lt;semaphore.h&gt;</td>
+<td>信号量</td>
+</tr>
+<tr>
+<td>&lt;string.h&gt;</td>
+<td>字符串操作</td>
+</tr>
+<tr>
+<td>&lt;tar.h&gt;</td>
+<td>tar归档值</td>
+</tr>
+<tr>
+<td>&lt;termios.h&gt;</td>
+<td>终端IO</td>
+</tr>
+<tr>
+<td>&lt;unistd.h&gt;</td>
+<td>符号常量</td>
+</tr>
+<tr>
+<td>&lt;wordexp.h&gt;</td>
+<td>字扩充类型</td>
+</tr>
+<tr>
+<td>&lt;arpa/inet.h&gt;</td>
+<td>英特网定义</td>
+</tr>
+<tr>
+<td>&lt;net/if.h&gt;</td>
+<td>套接字本地接口</td>
+</tr>
+<tr>
+<td>&lt;netinet/in.h&gt;</td>
+<td>英特网地址族</td>
+</tr>
+<tr>
+<td>&lt;netinet/tcp.h&gt;</td>
+<td>传输控制协议定义</td>
+</tr>
+<tr>
+<td>&lt;sys/mman.h&gt;</td>
+<td>存储管理声明</td>
+</tr>
+<tr>
+<td>&lt;sys/select.h&gt;</td>
+<td>select 声明</td>
+</tr>
+<tr>
+<td>&lt;sys/socket.h&gt;</td>
+<td>套接字接口</td>
+</tr>
+<tr>
+<td>&lt;sys/stat.h&gt;</td>
+<td>文件状态</td>
+</tr>
+<tr>
+<td>&lt;sys/statvfs.h&gt;</td>
+<td>文件系统信息</td>
+</tr>
+<tr>
+<td>&lt;sys/time.h&gt;</td>
+<td>进程时间</td>
+</tr>
+<tr>
+<td>&lt;sys/types.h&gt;</td>
+<td>基本系统数据类型</td>
+</tr>
+<tr>
+<td>&lt;sys/un.h&gt;</td>
+<td>UNIX套接字定义</td>
+</tr>
+<tr>
+<td>&lt;sys/utsname.h&gt;</td>
+<td>系统名</td>
+</tr>
+<tr>
+<td>&lt;sys/wait.h&gt;</td>
+<td>进程控制</td>
+</tr>
+</tbody>
+</table>
 <h4 id="single-unix-specification">Single UNIX Specification</h4>
 <p>这是POSIX.1的超集</p>
-<hr/>
-<p>百日践行第2天</p>
 </section>
 </div>
 </div>
 </div>
-<a aria-label="Previous page: UNIX 基础" class="navigation navigation-prev navigation-unique" href="./unixbase.html"><i class="fa fa-angle-left"></i></a>
+<a aria-label="Previous page: UNIX 基础" class="navigation navigation-prev " href="./unixbase.html"><i class="fa fa-angle-left"></i></a>
+<a aria-label="Next page: 文件IO" class="navigation navigation-next " href="./fileio.html"><i class="fa fa-angle-right"></i></a>
 </div>
 </div>
 <script src="gitbook/app.js"></script>

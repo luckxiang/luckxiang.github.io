@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
-<title>Introduction | 《UNIX环境高级编程》学习笔记</title>
+<title>文件IO | 《UNIX环境高级编程》学习笔记</title>
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
-<meta content="这本书记录的是我学习UNIX环境编程的学习笔记，也是践行500字学习笔记100天的开始。" name="description"/>
+<meta content="" name="description"/>
 <meta content="GitBook 2.6.7" name="generator"/>
 <meta content="true" name="HandheldFriendly"/>
 <meta content="width=device-width, initial-scale=1, user-scalable=no" name="viewport"/>
@@ -17,14 +17,14 @@
 <link href="gitbook/plugins/gitbook-plugin-highlight/website.css" rel="stylesheet"/>
 <link href="gitbook/plugins/gitbook-plugin-search/search.css" rel="stylesheet"/>
 <link href="gitbook/plugins/gitbook-plugin-fontsettings/website.css" rel="stylesheet"/>
-<link href="./unixbase.html" rel="next"/>
+<link href="./unixstandard.html" rel="prev"/>
 </head>
 <body>
-<div class="book" data-basepath="." data-chapter-title="Introduction" data-filepath="README.md" data-innerlanguage="" data-level="0" data-revision="Wed Jun 15 2016 00:21:50 GMT+0800 (CST)">
+<div class="book" data-basepath="." data-chapter-title="文件IO" data-filepath="fileio.md" data-innerlanguage="" data-level="3" data-revision="Wed Jun 15 2016 00:21:50 GMT+0800 (CST)">
 <div class="book-summary">
 <nav role="navigation">
 <ul class="summary">
-<li class="chapter active" data-level="0" data-path="index.html">
+<li class="chapter " data-level="0" data-path="index.html">
 <a href="./index.html">
 <i class="fa fa-check"></i>
                         
@@ -47,7 +47,7 @@
                         UNIX标准及其实现
                     </a>
 </li>
-<li class="chapter " data-level="3" data-path="fileio.html">
+<li class="chapter active" data-level="3" data-path="fileio.html">
 <a href="./fileio.html">
 <i class="fa fa-check"></i>
 <b>3.</b>
@@ -76,14 +76,34 @@
 <div class="page-wrapper" role="main" tabindex="-1">
 <div class="page-inner">
 <section class="normal" id="section-">
-<h1 id="《unix环境高级编程》学习笔记">《UNIX环境高级编程》学习笔记</h1>
-<hr/>
-<p>这本书记录的是我学习UNIX环境编程的学习笔记，也是践行500字学习笔记100天的开始。</p>
+<h1 id="文件io">文件IO</h1>
+<p>UNIX的文件IO常被称为不带缓冲的IO，与之相对应的是标准IO，不带缓冲不是指不经过缓存区，而是说每一个read和write都调用内核中的系统调用，对于内核而言，所有打开的文件都通过文件描述符引用，文件描述符是一个非负整数，没打开或者创建一个文件，内核就会返回一个文件描述符，后续的操作都需要使用这个描述符来标记文件。</p>
+<h4 id="打开文件">打开文件</h4>
+<pre><code>#include&lt;fcntl.h&gt;
+
+int open(const char *path, int oflag, .../*mode_t mode*/);
+int openat(int fd, const char *path, int oflag, .../*mode_t mode*/);
+//两函数的返回值，成功返回文件描述符的值，错误返回－1
+</code></pre><p>fd参数把openat和open区别开来     </p>
+<ul>
+<li>当path是绝对路径名的时候，open等于openat。</li>
+<li>当path是相对路径名的时候，fd指出来相对路径名在文件系统中的开始位置，其中fd通过打开相对路径名所在的路径来获取。</li>
+<li>当path是相对路径名，fd的值是特殊值AT_FDCWD时，路径名在当前工作目录中获取。
+openat主要是为了解决两个问题，第一个问题是让线程可以使用相对路径来打开文件，而不再只能打开当前工作目录，同一进程的线程共享同一个工作目录，很难让他们工作在不同的目录中，如果要用绝对路径的话，使用上又会受到很多限制。第二个问题是解决TOCTTOU(time-of-check-to-time-of-use)问题，提高程序的安全性。<br/>当文件名或路径名超出了系统规定的最大长度时，是截断还是返回出错由常量_POSIX_NO_TRIUNC决定。</li>
+</ul>
+<h4 id="创建文件">创建文件</h4>
+<pre><code>#include&lt;fctl.h&gt;
+
+int creat(const char *path, mode_t mode);
+//成功返回只写打开的文件描述符，出错返回－1
+</code></pre><p>等同于函数
+<code>open(path, O_WRONLY | O_CREAT | O_TRUNC, mode);</code>
+因为可以用open替代，于是也不用需要单独的open函数了。</p>
 </section>
 </div>
 </div>
 </div>
-<a aria-label="Next page: UNIX 基础" class="navigation navigation-next navigation-unique" href="./unixbase.html"><i class="fa fa-angle-right"></i></a>
+<a aria-label="Previous page: UNIX标准及其实现" class="navigation navigation-prev navigation-unique" href="./unixstandard.html"><i class="fa fa-angle-left"></i></a>
 </div>
 </div>
 <script src="gitbook/app.js"></script>
