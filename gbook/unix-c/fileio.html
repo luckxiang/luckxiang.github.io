@@ -20,7 +20,7 @@
 <link href="./unixstandard.html" rel="prev"/>
 </head>
 <body>
-<div class="book" data-basepath="." data-chapter-title="文件IO" data-filepath="fileio.md" data-innerlanguage="" data-level="3" data-revision="Wed Jun 15 2016 00:21:50 GMT+0800 (CST)">
+<div class="book" data-basepath="." data-chapter-title="文件IO" data-filepath="fileio.md" data-innerlanguage="" data-level="3" data-revision="Thu Jun 16 2016 00:05:25 GMT+0800 (CST)">
 <div class="book-summary">
 <nav role="navigation">
 <ul class="summary">
@@ -96,9 +96,56 @@ openat主要是为了解决两个问题，第一个问题是让线程可以使�
 
 int creat(const char *path, mode_t mode);
 //成功返回只写打开的文件描述符，出错返回－1
-</code></pre><p>等同于函数
-<code>open(path, O_WRONLY | O_CREAT | O_TRUNC, mode);</code>
-因为可以用open替代，于是也不用需要单独的open函数了。</p>
+</code></pre><p>等同于函数<br/><code>open(path, O_WRONLY | O_CREAT | O_TRUNC, mode);</code><br/>因为可以用open替代，于是也不用需要单独的open函数了。</p>
+<h4 id="关闭文件">关闭文件</h4>
+<pre><code>#include&lt;unistd.h&gt;
+
+int close(fd);
+//成功返回0，出错返回－1
+</code></pre><p>关闭一个文件还会释放加在该文件上的所有记录锁，当一个进程关闭时，内核自动关闭它打开的所有文件，因此可以利用这一功能而不用显式的调用close函数。</p>
+<h4 id="设置偏移">设置偏移</h4>
+<pre><code>#include&lt;unistd.h&gt;
+
+off_t lseek(int fd, off_t offset, int whence);
+//成功返回新的文件偏移量，出错返回－1
+</code></pre><p>whence可取的值为<code>SEEK_SET</code>,<code>SEEK_CUR</code>,<code>SEEK_END</code>,如果fd指向的是一个管道，FIFO或者网络套接字，则返回－1，并将errno设置为ESPIPE,利用这一点可以测试文件是否可以设置偏移量，某些设备也可能允许负的偏移量，所以不能测试lseek的返回值是否小于0，lseek不会引起任何IO操作，他把偏移量记录在内核中，在下一次读或者写的时候生效，假如偏移量大于文件，则会在文件中形成一个空洞，有趣的是这个空洞并不要求占用存储区。具体实现和文件系统有关，但是新写的数据则会分配内存块。</p>
+<h4 id="读文件">读文件</h4>
+<pre><code>#include&lt;unistd.h&gt;
+
+ssize_t read(int fd, void *buf, size_t nbytes);
+//返回读到的字节数，若到文件尾，返回0，出错返回－1
+</code></pre><h4 id="写文件">写文件</h4>
+<pre><code>#include&lt;unistd.h&gt;
+
+ssize_t write(int fd, void *buf, size_t nbytes);
+//成功返回已写的字节数，出错返回－1
+</code></pre><h4 id="io效率">IO效率</h4>
+<p>当一次读取文件的BUFF_SIZE大小等于磁盘块长度的时候，IO的效率达到最大值。</p>
+<h4 id="文件共享的方式">文件共享的方式</h4>
+<p>在内核中打开文件会维护三张表，一张进程表，一张文件表，一张节点表，不同的进程打开相同的文件，他们的进程表，文件表都不一样，但是节点表是一样的，相当于是一个实体的不同引用。</p>
+<h4 id="复制文件描述符">复制文件描述符</h4>
+<pre><code>#include&lt;unistd.h&gt;
+
+int dup(fd);
+int dup2(int fd, int fd2);
+//成功返回新的描述符，出错返回－1
+</code></pre><p>这两个函数可以实现重定向，他们返回的描述符和原来的描述符指向同一个文件节点，<code>dup</code>返回的是当前可用的描述符中的最小值，<code>dup2</code>函数则可以用fd2指定新描述符的值，如果fd2打开，则先把他关闭，如果fd2等于fd，则不关闭该文件直接返回fd2。</p>
+<h4 id="改变打开文件的属性">改变打开文件的属性</h4>
+<pre><code>#include&lt;unistd.h&gt;
+
+int fcntl(int fd, int cmd, .../*int arg*/);
+</code></pre><p>这个函数有五种功能，</p>
+<ul>
+<li>复制已有描述符，cmd=F_DUPFD | cmd=F_UDUPFD_CLOEXEC</li>
+<li>获取／设置文件描述符标志 cmd=F_GETFD | cmd=F_SETFD</li>
+<li>获取／设置文件状态标志 cmd=F_GETFL |cmd=F_SETFL</li>
+<li>获取／设置异步IO所有权 cmd=F_GETTOWN |cmd=F_SETTOWN</li>
+<li>获取／设置记录锁 cmd=F_GETLK |cmd=F_SETLK |cmd=F_SETLKW</li>
+</ul>
+<h4 id="ioctl">ioctl</h4>
+<p>ioctl，用来扩展其他IO操作，每个设备驱动都可以定义一组自己专用的ioctl命令。</p>
+<h4 id="devfd">/dev/fd</h4>
+<p>打开<code>/dev/fd/n</code>等效于复制描述符n。且他拥有的模式是原来描述符n的子集或等于原来描述符的mode，具体和系统实现有关。这种文件操作方式主要提供给shell用。</p>
 </section>
 </div>
 </div>
