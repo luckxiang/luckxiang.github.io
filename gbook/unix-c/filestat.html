@@ -20,7 +20,7 @@
 <link href="./fileio.html" rel="prev"/>
 </head>
 <body>
-<div class="book" data-basepath="." data-chapter-title="文件属性" data-filepath="filestat.md" data-innerlanguage="" data-level="4" data-revision="Fri Jun 17 2016 01:04:28 GMT+0800 (CST)">
+<div class="book" data-basepath="." data-chapter-title="文件属性" data-filepath="filestat.md" data-innerlanguage="" data-level="4" data-revision="Fri Jun 17 2016 01:08:47 GMT+0800 (CST)">
 <div class="book-summary">
 <nav role="navigation">
 <ul class="summary">
@@ -96,17 +96,46 @@
 <li><strong>FIFO</strong>, 用于进程间通信，有时也称为命名管道。</li>
 <li><strong>套接字</strong>,用于进程间网络通信。</li>
 <li><strong>符号链接</strong>,这种文件指向另一个文件。
-文件类型信息包含在stat结构的st_mode,中可以用下面的宏来确定文件类型，这些宏的参数都是st_mode数据。
-| 宏 | 文件类型 |
-| ----- | ----- |
-| S_ISREG| 普通文件 |
-| S_ISDIR | 目录文件 |
-| S_ISBLK |块特殊文件 |
-| S_ISCHR | 字符特殊文件 |
-| S_ISFIFO | FIFO或命名管道 |
-| S_ISLINK | 符号链接 |
-| S_ISSOCK| 套接字 |</li>
+文件类型信息包含在stat结构的st_mode,中可以用下面的宏来确定文件类型，这些宏的参数都是st_mode数据。</li>
 </ul>
+<table>
+<thead>
+<tr>
+<th>宏</th>
+<th>文件类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S_ISREG</td>
+<td>普通文件</td>
+</tr>
+<tr>
+<td>S_ISDIR</td>
+<td>目录文件</td>
+</tr>
+<tr>
+<td>S_ISBLK</td>
+<td>块特殊文件</td>
+</tr>
+<tr>
+<td>S_ISCHR</td>
+<td>字符特殊文件</td>
+</tr>
+<tr>
+<td>S_ISFIFO</td>
+<td>FIFO或命名管道</td>
+</tr>
+<tr>
+<td>S_ISLINK</td>
+<td>符号链接</td>
+</tr>
+<tr>
+<td>S_ISSOCK</td>
+<td>套接字</td>
+</tr>
+</tbody>
+</table>
 <h4 id="文件stat">文件stat</h4>
 <p>stat的实际定义可能随具体实现有所不同，但其基本形式如下：</p>
 <pre><code>struct stat {
