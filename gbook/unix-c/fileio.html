@@ -17,10 +17,11 @@
 <link href="gitbook/plugins/gitbook-plugin-highlight/website.css" rel="stylesheet"/>
 <link href="gitbook/plugins/gitbook-plugin-search/search.css" rel="stylesheet"/>
 <link href="gitbook/plugins/gitbook-plugin-fontsettings/website.css" rel="stylesheet"/>
+<link href="./filestat.html" rel="next"/>
 <link href="./unixstandard.html" rel="prev"/>
 </head>
 <body>
-<div class="book" data-basepath="." data-chapter-title="文件IO" data-filepath="fileio.md" data-innerlanguage="" data-level="3" data-revision="Thu Jun 16 2016 00:05:25 GMT+0800 (CST)">
+<div class="book" data-basepath="." data-chapter-title="文件IO" data-filepath="fileio.md" data-innerlanguage="" data-level="3" data-revision="Fri Jun 17 2016 01:04:28 GMT+0800 (CST)">
 <div class="book-summary">
 <nav role="navigation">
 <ul class="summary">
@@ -55,10 +56,18 @@
                         文件IO
                     </a>
 </li>
+<li class="chapter " data-level="4" data-path="filestat.html">
+<a href="./filestat.html">
+<i class="fa fa-check"></i>
+<b>4.</b>
+                        
+                        文件属性
+                    </a>
+</li>
 <li class="divider"></li>
 <li>
-<a class="homepage-back" href="http://www.bigxiangbaobao.com" target="_self">
-                        Back to Homepage</a>
+<a class="homepage-back" href="http://www.bigxiangbaobao.com/book/" target="_self">
+                        Back to Book</a>
 </li>
 </ul>
 </nav>
@@ -77,6 +86,7 @@
 <div class="page-inner">
 <section class="normal" id="section-">
 <h1 id="文件io">文件IO</h1>
+<hr/>
 <p>UNIX的文件IO常被称为不带缓冲的IO，与之相对应的是标准IO，不带缓冲不是指不经过缓存区，而是说每一个read和write都调用内核中的系统调用，对于内核而言，所有打开的文件都通过文件描述符引用，文件描述符是一个非负整数，没打开或者创建一个文件，内核就会返回一个文件描述符，后续的操作都需要使用这个描述符来标记文件。</p>
 <h4 id="打开文件">打开文件</h4>
 <pre><code>#include&lt;fcntl.h&gt;
@@ -150,7 +160,8 @@ int fcntl(int fd, int cmd, .../*int arg*/);
 </div>
 </div>
 </div>
-<a aria-label="Previous page: UNIX标准及其实现" class="navigation navigation-prev navigation-unique" href="./unixstandard.html"><i class="fa fa-angle-left"></i></a>
+<a aria-label="Previous page: UNIX标准及其实现" class="navigation navigation-prev " href="./unixstandard.html"><i class="fa fa-angle-left"></i></a>
+<a aria-label="Next page: 文件属性" class="navigation navigation-next " href="./filestat.html"><i class="fa fa-angle-right"></i></a>
 </div>
 </div>
 <script src="gitbook/app.js"></script>

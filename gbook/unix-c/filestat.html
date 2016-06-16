@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
-<title>Introduction | 《UNIX环境高级编程》学习笔记</title>
+<title>文件属性 | 《UNIX环境高级编程》学习笔记</title>
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
-<meta content="这本书记录的是我学习UNIX环境编程的学习笔记，也是践行500字学习笔记100天的开始。" name="description"/>
+<meta content="" name="description"/>
 <meta content="GitBook 2.6.7" name="generator"/>
 <meta content="true" name="HandheldFriendly"/>
 <meta content="width=device-width, initial-scale=1, user-scalable=no" name="viewport"/>
@@ -17,14 +17,14 @@
 <link href="gitbook/plugins/gitbook-plugin-highlight/website.css" rel="stylesheet"/>
 <link href="gitbook/plugins/gitbook-plugin-search/search.css" rel="stylesheet"/>
 <link href="gitbook/plugins/gitbook-plugin-fontsettings/website.css" rel="stylesheet"/>
-<link href="./unixbase.html" rel="next"/>
+<link href="./fileio.html" rel="prev"/>
 </head>
 <body>
-<div class="book" data-basepath="." data-chapter-title="Introduction" data-filepath="README.md" data-innerlanguage="" data-level="0" data-revision="Fri Jun 17 2016 01:04:28 GMT+0800 (CST)">
+<div class="book" data-basepath="." data-chapter-title="文件属性" data-filepath="filestat.md" data-innerlanguage="" data-level="4" data-revision="Fri Jun 17 2016 01:04:28 GMT+0800 (CST)">
 <div class="book-summary">
 <nav role="navigation">
 <ul class="summary">
-<li class="chapter active" data-level="0" data-path="index.html">
+<li class="chapter " data-level="0" data-path="index.html">
 <a href="./index.html">
 <i class="fa fa-check"></i>
                         
@@ -55,7 +55,7 @@
                         文件IO
                     </a>
 </li>
-<li class="chapter " data-level="4" data-path="filestat.html">
+<li class="chapter active" data-level="4" data-path="filestat.html">
 <a href="./filestat.html">
 <i class="fa fa-check"></i>
 <b>4.</b>
@@ -84,14 +84,59 @@
 <div class="page-wrapper" role="main" tabindex="-1">
 <div class="page-inner">
 <section class="normal" id="section-">
-<h1 id="《unix环境高级编程》学习笔记">《UNIX环境高级编程》学习笔记</h1>
+<h1 id="文件属性">文件属性</h1>
 <hr/>
-<p>这本书记录的是我学习UNIX环境编程的学习笔记，也是践行500字学习笔记100天的开始。</p>
+<h4 id="文件类型">文件类型</h4>
+<p>UNIX下有七种文件类型：  </p>
+<ul>
+<li><strong>普通文件</strong>，普通文件包含某种数据，无论是文本还是二进制数据，对于内核并无区别，对普通文件内容的解释由应用程序来完成，但是可执行程序是个例外，内核必需理解其格式。</li>
+<li><strong>目录文件</strong>，这种文件包含了其他文件的名字以及指向这些文件的有关信息，进程只要对目录具有读权限就可以读取目录的内容，但是只有内核才可以直接写目录文件。</li>
+<li><strong>块特殊文件</strong>，提供对设备带缓冲的访问，每次读取长度固定。</li>
+<li><strong>字符特殊文件</strong>，提供对设备不带缓冲的访问，每次访问长度可变。</li>
+<li><strong>FIFO</strong>, 用于进程间通信，有时也称为命名管道。</li>
+<li><strong>套接字</strong>,用于进程间网络通信。</li>
+<li><strong>符号链接</strong>,这种文件指向另一个文件。
+文件类型信息包含在stat结构的st_mode,中可以用下面的宏来确定文件类型，这些宏的参数都是st_mode数据。
+| 宏 | 文件类型 |
+| ----- | ----- |
+| S_ISREG| 普通文件 |
+| S_ISDIR | 目录文件 |
+| S_ISBLK |块特殊文件 |
+| S_ISCHR | 字符特殊文件 |
+| S_ISFIFO | FIFO或命名管道 |
+| S_ISLINK | 符号链接 |
+| S_ISSOCK| 套接字 |</li>
+</ul>
+<h4 id="文件stat">文件stat</h4>
+<p>stat的实际定义可能随具体实现有所不同，但其基本形式如下：</p>
+<pre><code>struct stat {
+mode_t st_mode; //
+ino_t st_ino; //
+dev_t st_dev; //
+dev_t st_rdev; //
+nlink_t st_nlink; //
+uid_t st_uid; //
+gid_t st_gid; //
+off_t st_size; //
+struct timespec st_atime; //
+struct timespec st_mtime; //
+struct timespec st_ctime; //
+blksize_t st_blksize; //
+blkcnt_t st_blocks; //
+</code></pre><p>stat 的四个操作函数定义如下</p>
+<pre><code>#include&lt;sys/stat.h&gt;
+
+int stat(const char *restrict pathname, struct stat *restrict buf);
+int fstat(int fd, struct *buf);
+int lstat(const char *restrict pathname, struct stat *restrict buf);
+int fstatat(int fd, const char *restrict pathname, struct stat *restrict buf, int flag);
+//成功返回0 出错返回－1
+</code></pre><p>使用stat函数最多的应该是<code>ls －l</code>命令，用ls可以获取一个文件的所有信息。</p>
 </section>
 </div>
 </div>
 </div>
-<a aria-label="Next page: UNIX 基础" class="navigation navigation-next navigation-unique" href="./unixbase.html"><i class="fa fa-angle-right"></i></a>
+<a aria-label="Previous page: 文件IO" class="navigation navigation-prev navigation-unique" href="./fileio.html"><i class="fa fa-angle-left"></i></a>
 </div>
 </div>
 <script src="gitbook/app.js"></script>
