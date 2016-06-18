@@ -20,7 +20,7 @@
 <link href="./fileio.html" rel="prev"/>
 </head>
 <body>
-<div class="book" data-basepath="." data-chapter-title="文件属性" data-filepath="filestat.md" data-innerlanguage="" data-level="4" data-revision="Sat Jun 18 2016 01:28:29 GMT+0800 (CST)">
+<div class="book" data-basepath="." data-chapter-title="文件属性" data-filepath="filestat.md" data-innerlanguage="" data-level="4" data-revision="Sun Jun 19 2016 02:53:15 GMT+0800 (CST)">
 <div class="book-summary">
 <nav role="navigation">
 <ul class="summary">
@@ -209,7 +209,30 @@ int chmod(const char *pathname, mode_t mode);
 int fchmod(int fd, mode_t mode);
 int fchmodat(int fd , const char *pathname, mode_t mode,int flag);
 //成功返回0 ，出错返回－1
-</code></pre>
+</code></pre><h4 id="更改文件的用户id和组id">更改文件的用户ID和组ID</h4>
+<pre><code>#include&lt;unistd.h&gt;
+
+int chown(const char *pathname, uid_t owner, gid_t group);
+int fchown(int fd, uid_t owner, gid_t group);
+int fchownat(int fd, const char *pathname, uid_t owner, git_t group, int flag);
+int lchown(const char *pathname, uid_t owner, git_t group);
+//成功返回0 ，出错返回－1
+```这四个函数操作类似，在符号链接情况下，lchown，fchownat(flag=AT_SYMLINK_NOFOLLOW)更改符号链接本身的所有者，而不是指向该符号链接所指向的文件的所有者。
+基于BSD的系统只允许超级用户更改文件的所有者，而System V允许任一用户更改他所拥有的文件的所有者，POSIX.1允许在这两种操作中选用一种，由宏`_POSIX_CHOWN_RESTRICTED`控制，它可以用pathconf和fpathconf函数查询，还可以在每个文件系统基础上，使该选项起作用或不起作用。
+
+#### 文件长度
+stat的结构成员st_size表示以字节为单位的文件长度，此字段只对普通文件，目录文件和符号链接有意义。此外，大多数UNIX系统还提供st_blocksize,st_blocks,第一个是对文件IO较合适的块长度，第二个是所分配的实际xx字节字节块块数。xx由系统制定。st_blocksize用于读写操作时，读写一个文件所需的时间最少。
+
+#### 文件的空洞
+文件的空洞是由所设置的偏移量超过文件尾端照成的，除非写入数据，空洞可能不会占用实际物理内存，但是如果复制这个文件，那么新文件的空洞都会被0填满。
+
+#### 文件截断
+O_TRUNC可以把文件截断为0，此外截断文件还可以调用下面的函数
+</code></pre><h1 id="include">include<unistd.h></unistd.h></h1>
+<p>int truncate(const char *pathname, off_t length);
+int ftruncate(int fd, off_t length);
+//成功返回0，出错返回－1
+```</p>
 </section>
 </div>
 </div>
