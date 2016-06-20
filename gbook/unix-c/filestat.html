@@ -21,7 +21,7 @@
 <link href="./fileio.html" rel="prev"/>
 </head>
 <body>
-<div class="book" data-basepath="." data-chapter-title="文件属性" data-filepath="filestat.md" data-innerlanguage="" data-level="4" data-revision="Mon Jun 20 2016 00:39:09 GMT+0800 (CST)">
+<div class="book" data-basepath="." data-chapter-title="文件属性" data-filepath="filestat.md" data-innerlanguage="" data-level="4" data-revision="Tue Jun 21 2016 00:21:41 GMT+0800 (CST)">
 <div class="book-summary">
 <nav role="navigation">
 <ul class="summary">
@@ -239,7 +239,43 @@ int lchown(const char *pathname, uid_t owner, git_t group);
 int truncate(const char *pathname, off_t length);
 int ftruncate(int fd, off_t length);
 //成功返回0，出错返回－1
-</code></pre>
+</code></pre><h4 id="文件系统">文件系统</h4>
+<p>我们可以把一个磁盘分成一个或者多个分区，每个分区可以包含一个文件系统，文件系统mount在根文件系统下，<code>i</code>节点是固定长度的记录项，它包含有关文件系统的大部分信息。每一个<code>i</code>节点都有一个链接计数，表示有多少个目录项指向该文件，只有计数为0时才能删除该文件。在stat结构中，链接计数包含在st_nlink中，这种链接类型称为硬链接。还有一种链接是符号链接（软链接），在软链接中包含了实际指向的文件的名字，stat中大多数信息都来自<code>i</code>节点。只有文件名和i节点编号存在目录项中，需要注意的是目录项中的<code>i</code>节点编号指向同一个文件系统中的相应<code>i</code>节点，这也是ln创建的硬链接不能跨越文件系统的原因。</p>
+<h4 id="link操作">LINK操作</h4>
+<p>任何一个文件可以有多个目录项指向其<code>i</code>节点，创建一个指向现有文件的链接方法是用link和linkat函数，相关操作具体如下</p>
+<pre><code>#include&lt;unistd.h&gt;
+
+int link(const char *existngpath, const char *newpath);
+int linkat(int efd, chonst char * existngpath, int nfd, const char *newpath, int flag);
+int ulink(const char *pathname);
+int ulinkat(int fd, const char *pathname, int flag);
+int remove(const char *pathname);
+//成功返回0，出错返回－1
+</code></pre><p>对于文件remove等于ulink，对于目录，remove等雨rmdir</p>
+<h4 id="文件目录重命名">文件目录重命名</h4>
+<pre><code>#include&lt;stdio.h&gt;
+
+int rename(const char *oldname, const char *newname);
+int renameat(int oldfd,const char *oldname, int newfd, const char *newname);
+//成功返回0，出错返回－1
+</code></pre><h4 id="符号链接">符号链接</h4>
+<p>符号链接是对一个文件的间接指针，而硬链接直接指向文件得<code>i</code>节点，两者区别如下：</p>
+<ul>
+<li>硬链接通常要求文件和链接位于同一个文件系统中。</li>
+<li>只有超级用户才能创建指向目录的硬链接，需要底层文件系统支持，但是这样会带来循环的隐患。</li>
+<li>对符号链接以及它指向何种对象和文件系统并没有限制，一般用于将文件和目录移到系统的另一个位置。我开发的时候经常会用到这个操作。多种方案共用一个符号链接指向不同的目录。
+```<h1 id="include">include<unistd.h></unistd.h></h1>
+</li>
+</ul>
+<p>int symlink(const char <em>actualpath, const char </em>sympath);
+int symlinkat(const char <em>actualpath, int fd, const cahr </em>sympath);
+//成功返回0，出错返回－1</p>
+<pre><code>由于open跟随符号链接，打开链接会打开实际的目录或者文件所以需要一个方法打开链接本身并读取链接中的名字
+</code></pre><h1 id="include">include<unistd.h></unistd.h></h1>
+<p>ssize_t readlink(const char <em>restrict pathname, char </em>restrict buf, size_t bufsize);
+ssize_t readlinkat(int fd, const char <em>restrict pathname, char </em>restrict buf, size_t bufsize);
+//成功返回读取的字节数，失败返回－1
+```</p>
 </section>
 </div>
 </div>
