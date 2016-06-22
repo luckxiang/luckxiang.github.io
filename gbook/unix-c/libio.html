@@ -20,7 +20,7 @@
 <link href="./filestat.html" rel="prev"/>
 </head>
 <body>
-<div class="book" data-basepath="." data-chapter-title="标准IO库" data-filepath="libio.md" data-innerlanguage="" data-level="5" data-revision="Tue Jun 21 2016 23:47:30 GMT+0800 (CST)">
+<div class="book" data-basepath="." data-chapter-title="标准IO库" data-filepath="libio.md" data-innerlanguage="" data-level="5" data-revision="Wed Jun 22 2016 23:38:32 GMT+0800 (CST)">
 <div class="book-summary">
 <nav role="navigation">
 <ul class="summary">
@@ -106,6 +106,64 @@ int fwide(FILE *fp, int mode);
 当打开一个流时，我们打开了一个FILE对象，指向FILE对象的指针被叫做文件指针。FILE对象包含了管理该流所需要的所有信息，如实际IO的文件描述符，指向缓冲区的指针，缓冲区的长度，当前在缓冲区的字符数以及出错标志等。</p>
 <h4 id="标准输入，标准输出，标准错误输出">标准输入，标准输出，标准错误输出</h4>
 <p>对于一个进程来说，打开的时候和三个流自动绑定，就是标准输入，标准输出，标准错误输出。可以通过<code>stdin</code>,<code>stdout</code>,<code>stderr</code>引用。他们和文件IO的，<code>STDIN_FILENO</code>,<code>STDOUT_FILENO</code>,<code>STDERR_FILENO</code>对应。</p>
+<h4 id="缓冲">缓冲</h4>
+<p>文件IO不带缓冲，标准IO带有缓冲，标准IO带缓冲的目的主要是为了减少read和write调用，自动管理IO流的缓冲，从而使应用程序不需要考虑这一点。但是由于某些地方定义不够清楚，常常令人疑惑。IO提供三种缓冲机制，全缓冲，行缓冲，不带缓冲。
+ISO C并没有详细的说明缓冲特征，很多系统入linux，mac OS X默认使用下列惯例：</p>
+<ul>
+<li>标准错误是不带缓冲的。</li>
+<li>若是指向终端设备的流，则是行缓冲，否则是全缓冲。
+更改缓冲类型的函数如下：</li>
+</ul>
+<pre><code>#include&lt;stdio.h&gt;
+
+void setbuf(FILE *restrict fp, char *restrict buf);
+void setvbuf(FILE *restrict fp, char *restrict buf, int mode, size_t size);
+//mode=_IOFBF | _IOLBF | _IONBF
+//成功返回0 ，出错返回－1
+</code></pre><p>调用函数fflush函数可以冲洗一个流，使该流所有未写的数据都被传送至内核，若fp＝NULL，则所有输出流都会被冲洗。</p>
+<pre><code>#include&lt;stdio.h&gt;
+
+int fflush(FILE *fp);
+//成功返回0，出错返回－1
+</code></pre><h4 id="读写流">读写流</h4>
+<p>IO操作一定要注意安全，不安全的函数十分危险，非格式化的IO操作有三种不同类型的操作：</p>
+<ul>
+<li>每次一个字符的IO</li>
+<li>每次一行的IO</li>
+<li>直接IO</li>
+</ul>
+<pre><code>#include&lt;stdio.h&gt;
+
+int getc(FILE *fp);
+int fgetc(FILE *fp);
+int getchar(void);
+//成功返回下一个字符，出错或到达文件尾返回EOF
+
+int putc(int c, FILE *fp);
+int fputc(int c,FILE *fp);
+int putchar(int c);
+//成功返回次，出错返回EOF
+
+char *fgets(char *restrict buf, FILE *restrict buf);
+char *gets(char *buf);
+//成功返回buf，出错或者到达文件尾部返回NULL
+
+int fputs(const char *restrict str, FILE *restrict fp);
+int puts(const char *buf);
+//成功返回非负值，出错返回EOF
+</code></pre><p>在FILE中维护了出错标志和文件结束标志，当返回EOF的时候并不能确定是出错还是到达文件尾部，可以用以下函数区分</p>
+<pre><code>#include&lt;stdio.h&gt;
+
+int ferror(FILE *fp);
+int feof(FILE *fp);
+//条件为真返回真，否则返回0
+void clearerr(FILE *fp);
+</code></pre><p>还可以把读出来的字符又压回标准IO库的流缓冲区中，注意下次读出来的顺序和压回去相反。回送的字符，也不一定是上次读出来的字符，注意一次成功的ungetc会清除该流的文件结束标志</p>
+<pre><code>#include&lt;stdio.h&gt;
+
+int ungetc(int c, FILE *fp);
+//成功返回C，出错返回EOF
+</code></pre>
 </section>
 </div>
 </div>
