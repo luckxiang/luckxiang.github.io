@@ -17,10 +17,11 @@
 <link href="gitbook/plugins/gitbook-plugin-highlight/website.css" rel="stylesheet"/>
 <link href="gitbook/plugins/gitbook-plugin-search/search.css" rel="stylesheet"/>
 <link href="gitbook/plugins/gitbook-plugin-fontsettings/website.css" rel="stylesheet"/>
+<link href="./sysinfo.html" rel="next"/>
 <link href="./filestat.html" rel="prev"/>
 </head>
 <body>
-<div class="book" data-basepath="." data-chapter-title="标准IO库" data-filepath="libio.md" data-innerlanguage="" data-level="5" data-revision="Sat Jun 25 2016 03:55:48 GMT+0800 (CST)">
+<div class="book" data-basepath="." data-chapter-title="标准IO库" data-filepath="libio.md" data-innerlanguage="" data-level="5" data-revision="Sun Jun 26 2016 01:24:59 GMT+0800 (CST)">
 <div class="book-summary">
 <nav role="navigation">
 <ul class="summary">
@@ -69,6 +70,14 @@
 <b>5.</b>
                         
                         标准IO库
+                    </a>
+</li>
+<li class="chapter " data-level="6" data-path="sysinfo.html">
+<a href="./sysinfo.html">
+<i class="fa fa-check"></i>
+<b>6.</b>
+                        
+                        系统文件和信息
                     </a>
 </li>
 <li class="divider"></li>
@@ -184,6 +193,9 @@ int scanf(const cahr *restrict format);
 int fscanf(FILE *restrict fp, const char *restrict format, ...);
 int sscanf(const char *restrict buf, const char *restrict format, ...);
 //返回负值的输入项数，出错或者到达文件尾返回EOF
+</code></pre><pre><code>#include&lt;stdio.h&gt;
+int fileno(FILE *fp);
+//返回与该流关联的文件描述符
 </code></pre><h4 id="定位流">定位流</h4>
 <p>有三种方法定位标准IO流</p>
 <ul>
@@ -238,7 +250,8 @@ FILE* open_wmemstream(wchar_t **bufp, size_t *sizep);
 </div>
 </div>
 </div>
-<a aria-label="Previous page: 文件属性" class="navigation navigation-prev navigation-unique" href="./filestat.html"><i class="fa fa-angle-left"></i></a>
+<a aria-label="Previous page: 文件属性" class="navigation navigation-prev " href="./filestat.html"><i class="fa fa-angle-left"></i></a>
+<a aria-label="Next page: 系统文件和信息" class="navigation navigation-next " href="./sysinfo.html"><i class="fa fa-angle-right"></i></a>
 </div>
 </div>
 <script src="gitbook/app.js"></script>
