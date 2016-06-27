@@ -17,10 +17,11 @@
 <link href="gitbook/plugins/gitbook-plugin-highlight/website.css" rel="stylesheet"/>
 <link href="gitbook/plugins/gitbook-plugin-search/search.css" rel="stylesheet"/>
 <link href="gitbook/plugins/gitbook-plugin-fontsettings/website.css" rel="stylesheet"/>
+<link href="./processenv.html" rel="next"/>
 <link href="./libio.html" rel="prev"/>
 </head>
 <body>
-<div class="book" data-basepath="." data-chapter-title="系统文件和信息" data-filepath="sysinfo.md" data-innerlanguage="" data-level="6" data-revision="Sun Jun 26 2016 23:53:54 GMT+0800 (CST)">
+<div class="book" data-basepath="." data-chapter-title="系统文件和信息" data-filepath="sysinfo.md" data-innerlanguage="" data-level="6" data-revision="Tue Jun 28 2016 01:25:05 GMT+0800 (CST)">
 <div class="book-summary">
 <nav role="navigation">
 <ul class="summary">
@@ -79,6 +80,14 @@
                         系统文件和信息
                     </a>
 </li>
+<li class="chapter " data-level="7" data-path="processenv.html">
+<a href="./processenv.html">
+<i class="fa fa-check"></i>
+<b>7.</b>
+                        
+                        进程环境
+                    </a>
+</li>
 <li class="divider"></li>
 <li>
 <a class="homepage-back" href="http://www.bigxiangbaobao.com/book/" target="_self">
@@ -101,6 +110,7 @@
 <div class="page-inner">
 <section class="normal" id="section-">
 <h1 id="系统文件和信息">系统文件和信息</h1>
+<hr/>
 <p>UNIX系统运行离不开数据文件的支持，如口令文件，组文件等，系统每次开机以及执行ls －l都需要调用口令文件。</p>
 <h4 id="口令文件">口令文件</h4>
 <p>口令文件是/etc/passwd，由于历史原因，这是一个ASCII文件，口令文件中的字段包含在<pwd.h>的passwd中，这些字段的格式基本上如下：</pwd.h></p>
@@ -137,11 +147,25 @@ struct spwd *getspent(void);
 void setspent(void);
 void endspent(void);
 </code></pre><h4 id="组文件">组文件</h4>
+<p>UNIX组文件包含了组名，加密口令，数值组ID，指向各用户名指针的数组，这些字段包含在<grp.h>的group字段中。</grp.h></p>
+<h4 id="附属组id">附属组ID</h4>
+<p>在以前的实现中每个用户只属于一个组，后来引进了附属组ID的概念，一个用户不仅可以属于口令记录项中组ID所对应的组，也可以属于其他组。文件访问权限相应的修改为：不仅将进程的有效组ID与文件的组ID相比较，而且也将所有附属组ID与文件组ID进行比较。</p>
+<h4 id="系统标识">系统标识</h4>
+<p>POSIX.1定义了uname函数，它返回主机和操作系统有关的信息，主机名通常在系统自举时设置，由/etc/rc或init取自启动文件。</p>
+<pre><code>#include&lt;sys/utsname.h&gt;
+
+int uname(struct utsname *name);
+//成功返回非负值，出错返回－1
+
+int gethostname(char *name, int namelen);
+//成功返回0，出错返回－1
+</code></pre><h4 id="时间和日期">时间和日期</h4>
 </section>
 </div>
 </div>
 </div>
-<a aria-label="Previous page: 标准IO库" class="navigation navigation-prev navigation-unique" href="./libio.html"><i class="fa fa-angle-left"></i></a>
+<a aria-label="Previous page: 标准IO库" class="navigation navigation-prev " href="./libio.html"><i class="fa fa-angle-left"></i></a>
+<a aria-label="Next page: 进程环境" class="navigation navigation-next " href="./processenv.html"><i class="fa fa-angle-right"></i></a>
 </div>
 </div>
 <script src="gitbook/app.js"></script>
