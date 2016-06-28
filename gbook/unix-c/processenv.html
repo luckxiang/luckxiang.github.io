@@ -20,7 +20,7 @@
 <link href="./sysinfo.html" rel="prev"/>
 </head>
 <body>
-<div class="book" data-basepath="." data-chapter-title="进程环境" data-filepath="processenv.md" data-innerlanguage="" data-level="7" data-revision="Tue Jun 28 2016 01:25:05 GMT+0800 (CST)">
+<div class="book" data-basepath="." data-chapter-title="进程环境" data-filepath="processenv.md" data-innerlanguage="" data-level="7" data-revision="Tue Jun 28 2016 23:28:23 GMT+0800 (CST)">
 <div class="book-summary">
 <nav role="navigation">
 <ul class="summary">
@@ -113,6 +113,37 @@
 <p>进程是操作系统的核心概念，学习进程的控制之前，需要先掌握进程的环境，这样我们就可以了解main程序是如何被调用的，命令行参数是如何传递给新程序的，典型的存储空间分布是什么样子，以及如何分配另外的存储空间，进程如何使用环境变量，进程如何终止等问题。</p>
 <h4 id="main函数">main函数</h4>
 <p>c程序总是从main函数开始的，在调用main之前会调用一个特殊的启动程序，一般是汇编程序，可执行文件一般把这个例程指定为程序的起始地址，这部分工作是连接器做的，启动例程从内核取得命令行参数和环境变量的值，然后为调用main函数做好准备。</p>
+<h4 id="进程终止">进程终止</h4>
+<p>进程终止有8种方式，其中五种是正常终止，3种异常终止：</p>
+<ol>
+<li>从main函数返回</li>
+<li>调用exit</li>
+<li>调用_exit,_Exit</li>
+<li>最后一个线程从其启动例程返回</li>
+<li>从最后一个线程调用pthread_exit</li>
+<li>调用abort（异常）</li>
+<li>接到一个信号（异常）</li>
+<li>最后一个线程对取消请求作出响应（异常）</li>
+</ol>
+<p>一个进程可以登记最多32个终止处理函数，这些函数通过atexit注册，由exit自动调用，调用循序和他们登记时刚好相反，同一个函数如果登记多次，也会被调用多次。</p>
+<pre><code>#include&lt;stdio.h&gt;
+
+int atexit(void(*func)(void));
+//成功返回0，出错返回非0
+</code></pre><h4 id="命令行参数">命令行参数</h4>
+<p>当执行一个新程序时，调用exec的进程可以把命令行参数传递给该新程序。这是UNIX shell的一部分常规操作。</p>
+<h4 id="环境表">环境表</h4>
+<p>每个程序都有一张环境表，环境表是一个字符指针数组，其中的每个指针包含一个NULL结尾的C字符串的地址，这串字符串就是一个环境变量，环境表可以通过环境指针environ获取。</p>
+<h4 id="c程序的存储空间分布">C程序的存储空间分布</h4>
+<p>C程序由下列几部分组成：</p>
+<ul>
+<li>正文段，只读可共享，是由CPU执行的机器指令部分，由exec从程序文件读入。</li>
+<li>初始化数据段，由exec从文件读入。</li>
+<li>未初始化数据段，他的内容并不由exec从文件读入并初始化为0，</li>
+<li>栈</li>
+<li>堆，历史原因，堆通常在栈和未初始化的数据段之间。
+此外，程序文件还包括其它一些段，如符号表，调试信息等，但这些部分并不装载到进程执行的程序映像中。</li>
+</ul>
 </section>
 </div>
 </div>
