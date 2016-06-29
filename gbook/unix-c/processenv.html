@@ -20,7 +20,7 @@
 <link href="./sysinfo.html" rel="prev"/>
 </head>
 <body>
-<div class="book" data-basepath="." data-chapter-title="进程环境" data-filepath="processenv.md" data-innerlanguage="" data-level="7" data-revision="Tue Jun 28 2016 23:28:23 GMT+0800 (CST)">
+<div class="book" data-basepath="." data-chapter-title="进程环境" data-filepath="processenv.md" data-innerlanguage="" data-level="7" data-revision="Thu Jun 30 2016 01:56:15 GMT+0800 (CST)">
 <div class="book-summary">
 <nav role="navigation">
 <ul class="summary">
@@ -143,6 +143,17 @@ int atexit(void(*func)(void));
 <li>栈</li>
 <li>堆，历史原因，堆通常在栈和未初始化的数据段之间。
 此外，程序文件还包括其它一些段，如符号表，调试信息等，但这些部分并不装载到进程执行的程序映像中。</li>
+</ul>
+<h4 id="共享库">共享库</h4>
+<p>动态链接把公用的库函数提取出来，在程序第一次执行或者调用库函数时，把程序可共享库函数链接。使得可执行文件中不再需要包含公用的库函数，而只需在所有进程都可引用的存储区保存库的一个副本，这样减少了每个可执行文件的长度，增加了一些运行时的开销，共享库还有一个优点，可以不重新编译程序，只需用新的库替换老的库就可以实现升级。</p>
+<h4 id="存储空间分配">存储空间分配</h4>
+<p>ISO C提供了三个用于存储空间动态分配的函数：</p>
+<ul>
+<li>malloc，分配指定字节数的存储区，此存储区中的初始值不确定。</li>
+<li>calloc，分配指定字节数的存储区，该空间中的每一位都初始化为0。</li>
+<li>realloc， 增加或者减少以前分配区的长度，当增加长度时，可能需要把以前分配区的内容移到一个足够大的区域，以便在尾端提供增加的存储区，新增区域内的初始值不确定。
+calloc和malloc相比就是他会把分配的存储区进行初始化，这一步往往比较耗时，有时候我们不需要初始化而需要更快速度的时候，应该用malloc。
+申请的内存块用完之后需要主动去释放，不然会造成内存泄漏，随着内存泄漏越来越多，直至不再有空闲空间，这个时候由于换页开销很大，就会造成性能下降，系统也可能自动检测到异常进程，进程结束时，他的资源都会被回收，包括申请的内存，所以内存泄漏过多时内核有可能会主动杀死进程。此外，还可能产生的问题是释放一个已经释放的块，调用free时用的指针不是申请内存返回的指针。内存泄漏很难检查，而且C语言的内存管理考的都是程序员，所以编程的时候需要格外小心。</li>
 </ul>
 </section>
 </div>
