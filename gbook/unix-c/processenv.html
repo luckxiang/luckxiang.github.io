@@ -20,7 +20,7 @@
 <link href="./sysinfo.html" rel="prev"/>
 </head>
 <body>
-<div class="book" data-basepath="." data-chapter-title="进程环境" data-filepath="processenv.md" data-innerlanguage="" data-level="7" data-revision="Fri Jul 01 2016 01:14:57 GMT+0800 (CST)">
+<div class="book" data-basepath="." data-chapter-title="进程环境" data-filepath="processenv.md" data-innerlanguage="" data-level="7" data-revision="Fri Jul 01 2016 01:21:14 GMT+0800 (CST)">
 <div class="book-summary">
 <nav role="navigation">
 <ul class="summary">
@@ -160,7 +160,7 @@ calloc和malloc相比就是他会把分配的存储区进行初始化，这一�
 <h4 id="跳转">跳转</h4>
 <p>在C语言中，goto不能扩越函数跳转，替代goto垮函数跳转的是setjmp和longjmp，他们和goto的作用都一样，用来处理深层嵌套出错处理十分方便。</p>
 <h4 id="易失变量">易失变量</h4>
-<p>在调用longjmp之后，我们使用的一些自动变量在调用前后是不一样的，而所有的标准都称他们的值是不确定的，如果我们希望这些变量保持调用longjmp后的值，则可以定义它为具有volatite属性。声明为全局变量或者静态变量的值在执行longjmp时保持不变。</p>
+<p>在调用longjmp之后，我们使用的一些自动变量在调用前后是不一样的，而所有的标准都称他们的值是不确定的，如果我们希望这些变量保持调用longjmp后的值，则可以定义它为具有volatite属性。声明为全局变量或者静态变量的值在执行longjmp时保持不变。我们在编译程序时可以带一些优化选项，全局变量，静态变量以及易失变量不会受优化影响。如编写一个使用非局部跳转的可移植程序，必须使用volatile属性。</p>
 </section>
 </div>
 </div>
