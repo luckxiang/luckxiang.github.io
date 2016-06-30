@@ -20,7 +20,7 @@
 <link href="./sysinfo.html" rel="prev"/>
 </head>
 <body>
-<div class="book" data-basepath="." data-chapter-title="进程环境" data-filepath="processenv.md" data-innerlanguage="" data-level="7" data-revision="Thu Jun 30 2016 01:56:15 GMT+0800 (CST)">
+<div class="book" data-basepath="." data-chapter-title="进程环境" data-filepath="processenv.md" data-innerlanguage="" data-level="7" data-revision="Fri Jul 01 2016 01:14:57 GMT+0800 (CST)">
 <div class="book-summary">
 <nav role="navigation">
 <ul class="summary">
@@ -155,6 +155,12 @@ int atexit(void(*func)(void));
 calloc和malloc相比就是他会把分配的存储区进行初始化，这一步往往比较耗时，有时候我们不需要初始化而需要更快速度的时候，应该用malloc。
 申请的内存块用完之后需要主动去释放，不然会造成内存泄漏，随着内存泄漏越来越多，直至不再有空闲空间，这个时候由于换页开销很大，就会造成性能下降，系统也可能自动检测到异常进程，进程结束时，他的资源都会被回收，包括申请的内存，所以内存泄漏过多时内核有可能会主动杀死进程。此外，还可能产生的问题是释放一个已经释放的块，调用free时用的指针不是申请内存返回的指针。内存泄漏很难检查，而且C语言的内存管理考的都是程序员，所以编程的时候需要格外小心。</li>
 </ul>
+<h4 id="环境变量">环境变量</h4>
+<p>环境变量是一个字符串，内核并不查看这些字符串，如何解释这些字符串完全取决于应用程序，我们可以通过函数来获取环境变量和设置环境变量，需要关心的是设置环境变量我们只能影响当前进程和其后调用或者生成的任何子进程的环境。环境表和环境变量以及命令行参数一般存放在栈之上，位于存储空间的顶部，删除一个变量的时候，是在环境表中找到该变量，然后把后续指针顺次往表首部移动一个位置，如果是要修改或者增加一个环境变量，操作会复杂很多，因为向上已经到了进程地址空间的顶部，向下又是栈的空间，没有多的空间了，如果是新增加环境变量或者修改的环境变量大小超过了原来的环境变量，则需要malloc出一个空间。</p>
+<h4 id="跳转">跳转</h4>
+<p>在C语言中，goto不能扩越函数跳转，替代goto垮函数跳转的是setjmp和longjmp，他们和goto的作用都一样，用来处理深层嵌套出错处理十分方便。</p>
+<h4 id="易失变量">易失变量</h4>
+<p>在调用longjmp之后，我们使用的一些自动变量在调用前后是不一样的，而所有的标准都称他们的值是不确定的，如果我们希望这些变量保持调用longjmp后的值，则可以定义它为具有volatite属性。声明为全局变量或者静态变量的值在执行longjmp时保持不变。</p>
 </section>
 </div>
 </div>
