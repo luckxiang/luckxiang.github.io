@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
-<title>UNIX 基础 | 《UNIX环境高级编程》学习笔记</title>
+<title>进程控制 | 《UNIX环境高级编程》学习笔记</title>
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
 <meta content="" name="description"/>
 <meta content="GitBook 2.6.7" name="generator"/>
@@ -17,11 +17,10 @@
 <link href="gitbook/plugins/gitbook-plugin-highlight/website.css" rel="stylesheet"/>
 <link href="gitbook/plugins/gitbook-plugin-search/search.css" rel="stylesheet"/>
 <link href="gitbook/plugins/gitbook-plugin-fontsettings/website.css" rel="stylesheet"/>
-<link href="./unixstandard.html" rel="next"/>
-<link href="./index.html" rel="prev"/>
+<link href="./processenv.html" rel="prev"/>
 </head>
 <body>
-<div class="book" data-basepath="." data-chapter-title="UNIX 基础" data-filepath="unixbase.md" data-innerlanguage="" data-level="1" data-revision="Sat Jul 02 2016 01:04:10 GMT+0800 (CST)">
+<div class="book" data-basepath="." data-chapter-title="进程控制" data-filepath="processctl.md" data-innerlanguage="" data-level="8" data-revision="Sat Jul 02 2016 01:04:10 GMT+0800 (CST)">
 <div class="book-summary">
 <nav role="navigation">
 <ul class="summary">
@@ -32,7 +31,7 @@
                         Introduction
                     </a>
 </li>
-<li class="chapter active" data-level="1" data-path="unixbase.html">
+<li class="chapter " data-level="1" data-path="unixbase.html">
 <a href="./unixbase.html">
 <i class="fa fa-check"></i>
 <b>1.</b>
@@ -88,7 +87,7 @@
                         进程环境
                     </a>
 </li>
-<li class="chapter " data-level="8" data-path="processctl.html">
+<li class="chapter active" data-level="8" data-path="processctl.html">
 <a href="./processctl.html">
 <i class="fa fa-check"></i>
 <b>8.</b>
@@ -117,24 +116,18 @@
 <div class="page-wrapper" role="main" tabindex="-1">
 <div class="page-inner">
 <section class="normal" id="section-">
-<h1 id="unix-基础">UNIX 基础</h1>
+<h1 id="进程控制">进程控制</h1>
 <hr/>
-<p>开始之前，在此回顾一下大学所学的操作系统的概念，操作系统是用户和计算机的接口，也是计算机硬件和其他软件的接口。它管理着系统的资源并为程序提供运行环境。</p>
-<h4 id="unix体系结构">UNIX体系结构</h4>
-<p>UNIX的体系结构由内到外可以分为四层，第一层是内核，它是系统的核心，提供操作系统最基本的功能，主要是文件系统，设备驱动，存储管理，进程管理，网络这几块。内核的接口被称为系统调用，这是第二层，也是接下来学习的重点，这部分的知识其实和操作系统原理互相印证，这也是我选择学习这本书的重要原因。第三层是shell和公用函数库，shell是一个命令行解释器，它从用户或者文件中读取命令，然后解释执行。shell有自己的语法，我们可以编写脚本来批量处理任务。shell解释器有多种版本，系统一般默认的是bash，目前我使用的是zsh，这是一个比bash更强的解释器。公用函数库就是我们常说的c库，他和系统调用有很大的不同，这个稍后再讲，第四层就是我们所说的应用程序，它是建立在shell，库函数，系统调用这三个东西上的。</p>
-<h4 id="系统调用和库函数的不同">系统调用和库函数的不同</h4>
-<p>所有的操作系统都提供多种服务的接口，这样程序才能向内核请求服务，各种版本的unix实现都提供了一组良好定义，数量有限，直接进入内核的接口。这些接口就是系统调用。UNIX使用的技术是为每一个系统调用在C库中设置一个具有同样名字的函数，用户进程用标准C来调用这些函数，然后这些函数有调用系统调用来获得相应的内核服务，当然，这些库函数也可能不需要系统调用，比如strcpy，atoi。</p>
-<ul>
-<li>系统调用和库函数在实现上有着本质的区别，但是对用户来说区别并不重要，两者都是为用户提供服务，一般来说，我们可以替换库函数，而系统调用是不能被替换的。  </li>
-<li>系统调用工作在内核层次，库函数在应用层次，很多库函数会调用系统调用，比如存储空间分配，系统调用sbrk只是分配一个空间给进程，而库函数malloc则在用户层次管理这一个空间。</li>
-<li>系统调用通常只提供一个最小调用，而库函数通常提供更复杂的功能。</li>
-</ul>
+<p>进程控制包括创建新进程，执行进程和终止进程。</p>
+<h4 id="进程标识">进程标识</h4>
+<p>每个进程都有一个非负数表示的唯一进程ID，因为进程ID具有唯一性，因此常常把它作为其它标识符的一部分，虽然是唯一的，但是进程ID是可复用的，当一个进程结束后，其进程ID就成为复用的候选者，大多数UNIX实现延迟复用算法。这样可以避免把新进程搞成已经被终止掉的进程，系统具有一些专用进程，ID为0的是调度进程，也叫做交换进程，这个进程是内核的一部分，它并不执行任何程序，也叫做系统进程，进程ID为1的是init进程，在自举过程结束的时候由内核调用，这个进程负责在自举内核以后启动一个UNIX系统，init通常读取与系统有关的初始化文件，并将系统引导到一个状态，init进程绝不会终止，它是一个普通的用户进程，但是以超级用户特权来运行，它也是所有孤儿进程的父进程。每个UNIX系统还提供了一套操作系统服务的内核进程，例如在某些UNIX系统的虚拟存储器实现中，进程ID2是页守护进程，此进程负责支持虚拟存储器系统的分页操作。</p>
+<h4 id="函数fork">函数fork</h4>
+<p>fork创建一个子进程，fork函数调用一次返回两次，子进程的返回值是0，父进程的返回值是子进程的进程ID，注意一个子进程的ID不可能是0，子进程和父进程继续执行fork调用之后的指令，子进程是父进程的副本</p>
 </section>
 </div>
 </div>
 </div>
-<a aria-label="Previous page: Introduction" class="navigation navigation-prev " href="./index.html"><i class="fa fa-angle-left"></i></a>
-<a aria-label="Next page: UNIX标准及其实现" class="navigation navigation-next " href="./unixstandard.html"><i class="fa fa-angle-right"></i></a>
+<a aria-label="Previous page: 进程环境" class="navigation navigation-prev navigation-unique" href="./processenv.html"><i class="fa fa-angle-left"></i></a>
 </div>
 </div>
 <script src="gitbook/app.js"></script>
