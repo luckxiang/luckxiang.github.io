@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
-<title>First Chapter | My Awesome Book</title>
+<title>切换cw时视频出现马赛克 | BUGS</title>
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
 <meta content="" name="description"/>
 <meta content="GitBook 2.6.7" name="generator"/>
@@ -20,7 +20,7 @@
 <link href="./index.html" rel="prev"/>
 </head>
 <body>
-<div class="book" data-basepath="." data-chapter-title="First Chapter" data-filepath="chapter1.md" data-innerlanguage="" data-level="1" data-revision="Wed Jul 13 2016 22:54:40 GMT+0800 (CST)">
+<div class="book" data-basepath="." data-chapter-title="切换cw时视频出现马赛克" data-filepath="1.md" data-innerlanguage="" data-level="1" data-revision="Wed Jul 13 2016 22:54:38 GMT+0800 (CST)">
 <div class="book-summary">
 <nav role="navigation">
 <ul class="summary">
@@ -31,12 +31,12 @@
                         Introduction
                     </a>
 </li>
-<li class="chapter active" data-level="1" data-path="chapter1.html">
-<a href="./chapter1.html">
+<li class="chapter active" data-level="1" data-path="1.html">
+<a href="./1.html">
 <i class="fa fa-check"></i>
 <b>1.</b>
                         
-                        First Chapter
+                        切换cw时视频出现马赛克
                     </a>
 </li>
 <li class="divider"></li>
@@ -54,13 +54,19 @@
 <!-- Title -->
 <h1>
 <i class="fa fa-circle-o-notch fa-spin"></i>
-<a href="./">My Awesome Book</a>
+<a href="./">BUGS</a>
 </h1>
 </div>
 <div class="page-wrapper" role="main" tabindex="-1">
 <div class="page-inner">
 <section class="normal" id="section-">
-<h1 id="first-chapter">First Chapter</h1>
+<h1 id="切换cw时视频出现马赛克">切换cw时视频出现马赛克</h1>
+<h4 id="描述">描述</h4>
+<p>客户自己做了一段包含多段ecm数据的ts流，在切换cw的时候，视频画面有轻微马赛克。</p>
+<h4 id="解决过程">解决过程</h4>
+<p>整个高安工作模型可以拆分成四个部分，客户制作流的调制器，客户的CA模块，配置dcw的mtc模块，解复用模块。客户用调制器制作加密流，CA模块根据流里过滤到的ecm数据计算dcw，dcw通过mtc配置给硬件，计算结果由解复用模块直接调用，每一个环节都有可能出现问题，除了mtc模块，其它部分对我来说都是黑盒，由于之前一直都没有反馈该问题，所以怀疑问题出在调制器或者CA模块，也就是制作的流有问题或者CA工作不正常，测试流是同步的，所以一开始排除流解复用的问题，在mtc驱动加延时100ms去配置dcw，发现视频和声音出现卡顿，把问题定位为设置dcw的时机点靠近切cw的时机点，然后我走入了误区，由于切cw的时机点无法获取，一直猜测流有问题，然后就想去证明流有问题，浪费了很多时间，最后发现是解复用模块去重设了dcw，导致解不出数据，设置延时出现卡顿也就可以解释了，延时的时候dcw已经被重设了，这一段时间解不出正确的数据，所以会出现卡顿。</p>
+<h4 id="反思">反思</h4>
+<p>这个问题解决慢的原因还是我对解复用的过程不熟悉导致，同时分析思路也需要优化，该问题的最优分析思路应该如下：马赛克－&gt;出现马赛克肯定是数据不对－&gt;数据为什么不对?没有解出正确的cw-&gt;为什么没有解出正确的cw？dcw不对-&gt;dcw不对的原因是什么？dcw设置时机有问题,dcw被清除了－&gt;验证这两个原因。</p>
 </section>
 </div>
 </div>
