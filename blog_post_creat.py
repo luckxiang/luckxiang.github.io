@@ -1,7 +1,8 @@
 #!/usr/bin/env python3.5
 # coding=utf-8
 import time
-import os
+import os 
+import readline
 
 title = input('Creat new blog post\nPlease enter blog post title:')
 tags = input('Please enter tags:')
