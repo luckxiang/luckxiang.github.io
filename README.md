@@ -1,10 +1,10 @@
 ## 说明
 
-此博客 fork 自 [Azeril](http://azeril.me/)，参考 [陈素封](http://cnfeat.com),感谢。
+此博客 fork 自 [Azeril](https://github.com/Azeril/azeril.github.io)，参考 [陈素封](http://cnfeat.com),感谢。
 
 ## 大象宝宝的小酒馆
 
-我是时雨大人，IC公司码农，遵循简洁精致的生活方式。博客：[大象宝宝的小酒馆](http://bigxiangbaobao.com)
+我是时雨大人，离知名程序猿还差了十万光年，遵循简洁精致的生活方式。博客：[大象宝宝的小酒馆](http://bigxiangbaobao.com)
 
 > 落日绣帘卷，亭下水连空。  
 > 知君为我新作，窗户湿青红。长记平山堂上，欹枕江南烟雨，杳杳没孤鸿。  

@@ -10,7 +10,7 @@ header-img: "http://7xs8go.com1.z0.glb.clouddn.com/semantic.jpg"
     <p><img src="http://7xs8go.com1.z0.glb.clouddn.com/bigxiang.png" align="center"></p>
 </center>
 
-我是时雨大人,IC公司码农，遵循简洁精致的生活方式。
+我是时雨大人,离知名程序猿还差了十万光年，遵循简洁精致的生活方式。
 
 > 落日绣帘卷，亭下水连空。  
 > 知君为我新作，窗户湿青红。长记平山堂上，欹枕江南烟雨，杳杳没孤鸿。  
