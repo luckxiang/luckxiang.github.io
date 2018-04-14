@@ -10,7 +10,7 @@ header-img: "http://7xs8go.com1.z0.glb.clouddn.com/semantic.jpg"
     <p><img src="http://7xs8go.com1.z0.glb.clouddn.com/bigxiang.png" align="center"></p>
 </center>
 
-我是时雨大人,离知名程序猿还差了十万光年，遵循简洁精致的生活方式。
+我是时雨大人，曾在IC公司担任软件研发，目前创业，负责产品和技术。从事过loader，驱动，内核，应用，高级安全等开发支持工作。
 
 > 落日绣帘卷，亭下水连空。  
 > 知君为我新作，窗户湿青红。长记平山堂上，欹枕江南烟雨，杳杳没孤鸿。  
@@ -21,16 +21,15 @@ header-img: "http://7xs8go.com1.z0.glb.clouddn.com/semantic.jpg"
 
 ### 坚信
 
- - 智力乃上天所赐，智慧靠后天修养
- - 永远不要只满足事物的表象，要勇于探索未知的可能
- - 子曰"知者不惑，仁者不忧，勇者不惧"
- 
+ - 与人为善，合作共赢
+ - 持续学习，不忘初心
+ - 凡事动脑，避免痴呆
+ - 经常锻炼，不怕猝死
 
 ### 关注：
 
  - linux
  - 嵌入式
- - python
  - cooking
 
 
