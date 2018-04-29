@@ -10,7 +10,7 @@ header-img: "http://7xs8go.com1.z0.glb.clouddn.com/semantic.jpg"
     <p><img src="http://7xs8go.com1.z0.glb.clouddn.com/bigxiang.png" align="center"></p>
 </center>
 
-我是时雨大人，曾在IC公司担任软件研发，目前创业，负责产品和技术。从事过loader，驱动，内核，应用，高级安全等开发支持工作。
+我是时雨大人，曾在IC公司担任软件研发，核心大客户的技术支持工作。目前创业，负责产品和技术,帮助公司产品实现物联网化。从事过loader，驱动，内核，应用，高级安全等开发支持工作。
 
 > 落日绣帘卷，亭下水连空。  
 > 知君为我新作，窗户湿青红。长记平山堂上，欹枕江南烟雨，杳杳没孤鸿。  
