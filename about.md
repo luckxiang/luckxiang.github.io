@@ -19,6 +19,10 @@ header-img: "http://7xs8go.com1.z0.glb.clouddn.com/semantic.jpg"
 > 忽然浪起，掀舞一叶白头翁。堪笑兰台公子，未解庄生天籁，刚道有雌雄。  
 > 一点浩然气，千里快哉风。  
 
+### 我的时间线
+[我的一生](http://bigxiangbaobao.com/blog/2018/05/04/我的一生/)
+
+
 ### 坚信
 
  - 与人为善，合作共赢
