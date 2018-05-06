@@ -18,9 +18,9 @@ header-img: "http://7xs8go.com1.z0.glb.clouddn.com/semantic.jpg"
 > 一千顷，都镜净，倒碧峰。  
 > 忽然浪起，掀舞一叶白头翁。堪笑兰台公子，未解庄生天籁，刚道有雌雄。  
 > 一点浩然气，千里快哉风。  
-
-
-
+       
+-----
+      
 ### 我的时间线
 - [**我的一生**](http://bigxiangbaobao.com/blog/2018/05/04/我的一生/)
 
