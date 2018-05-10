@@ -2,7 +2,6 @@
 # coding=utf-8
 import time
 import os 
-import readline
 
 title = input('Creat new blog post\nPlease enter blog post title:')
 tags = input('Please enter tags:')
