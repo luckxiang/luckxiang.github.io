@@ -21,7 +21,7 @@
 <link href="./mit-scheme.html" rel="prev"/>
 </head>
 <body>
-<div class="book" data-basepath="." data-chapter-title="vim 编辑器" data-filepath="vim.md" data-innerlanguage="" data-level="4" data-revision="Sat Aug 27 2016 10:37:38 GMT+0800 (CST)">
+<div class="book" data-basepath="." data-chapter-title="vim 编辑器" data-filepath="vim.md" data-innerlanguage="" data-level="4" data-revision="Mon May 14 2018 22:57:35 GMT+0800 (CST)">
 <div class="book-summary">
 <nav role="navigation">
 <ul class="summary">
@@ -168,12 +168,15 @@
 <p>Mac OS X &amp;&amp; Linux</p>
 <h5 id="安装">安装</h5>
 <p>Linux</p>
-<pre><code>sudo apt-get vim-nox 
+<pre><code>sudo apt-get vim //这个版本自带lua和python3，免去自己编译的麻烦
 </code></pre><p>Mac</p>
-<pre><code>brew install vim
+<pre><code>brew info vim //先看一下安装选项
+brew install vim --with-lua --with-override-system-vi  
+//我的系统安装的时候报错：ld: library not found for -lruby.2.5.1,由于我已经用brew安装了ruby，所以我做了一个软连接重新安装即可
+ln -s /usr/local/opt/ruby/lib/libruby.2.5.1.dylib /usr/local/lib/libruby.2.5.1.dylib
 </code></pre><h5 id="使用">使用</h5>
 <ol>
-<li>配置环境<br/>见我的github vim项目，fork别人的配置再按自己需求修改,vim-nox是个好东西，系统带的vim有很多东西不支持，免去自己手动编译的麻烦</li>
+<li>配置环境<br/>见我的github vim项目，最开始fork别人的配置再按自己需求修改的，用了一段时间之后切到了spf13-vim，很好很强大。</li>
 </ol>
 </section>
 </div>
