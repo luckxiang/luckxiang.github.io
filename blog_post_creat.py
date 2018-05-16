@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 # coding=utf-8
 import time
-import os 
+import os
+import readline  #允许输入的时候使用删除键和方向键
 
 title = input('Creat new blog post\nPlease enter blog post title:')
 tags = input('Please enter tags:')
