@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
-<title>Understand 程序静态分析 | 时雨大人的软件使用纪录</title>
+<title>vim 编辑器 | 时雨大人的软件使用纪录</title>
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
 <meta content="" name="description"/>
 <meta content="GitBook 2.6.7" name="generator"/>
@@ -17,10 +17,11 @@
 <link href="gitbook/plugins/gitbook-plugin-highlight/website.css" rel="stylesheet"/>
 <link href="gitbook/plugins/gitbook-plugin-search/search.css" rel="stylesheet"/>
 <link href="gitbook/plugins/gitbook-plugin-fontsettings/website.css" rel="stylesheet"/>
-<link href="./iterm.html" rel="prev"/>
+<link href="./git.html" rel="next"/>
+<link href="./mit-scheme.html" rel="prev"/>
 </head>
 <body>
-<div class="book" data-basepath="." data-chapter-title="Understand 程序静态分析" data-filepath="understand.md" data-innerlanguage="" data-level="11" data-revision="Mon May 14 2018 22:57:35 GMT+0800 (CST)">
+<div class="book" data-basepath="." data-chapter-title="vim 编辑器" data-filepath="vim.md" data-innerlanguage="" data-level="4" data-revision="Thu May 17 2018 00:06:34 GMT+0800 (CST)">
 <div class="book-summary">
 <nav role="navigation">
 <ul class="summary">
@@ -65,7 +66,7 @@
                         mit-scheme Lisp解释器
                     </a>
 </li>
-<li class="chapter " data-level="4" data-path="vim.html">
+<li class="chapter active" data-level="4" data-path="vim.html">
 <a href="./vim.html">
 <i class="fa fa-check"></i>
 <b>4.</b>
@@ -131,12 +132,20 @@
                         iTerm Mac终端
                     </a>
 </li>
-<li class="chapter active" data-level="11" data-path="understand.html">
+<li class="chapter " data-level="11" data-path="understand.html">
 <a href="./understand.html">
 <i class="fa fa-check"></i>
 <b>11.</b>
                         
                         Understand 程序静态分析
+                    </a>
+</li>
+<li class="chapter " data-level="12" data-path="rufus-qi-dong-pan-zhi-zuo-gong-ju.html">
+<a href="./rufus-qi-dong-pan-zhi-zuo-gong-ju.html">
+<i class="fa fa-check"></i>
+<b>12.</b>
+                        
+                        rufus 启动盘制作工具
                     </a>
 </li>
 <li class="divider"></li>
@@ -160,12 +169,29 @@
 <div class="page-wrapper" role="main" tabindex="-1">
 <div class="page-inner">
 <section class="normal" id="section-">
-<h1 id="understand-程序静态分析">Understand 程序静态分析</h1>
+<h1 id="vim">vim</h1>
+<p>一个文本编辑器，日常开发主要的代码编辑工具。</p>
+<hr/>
+<h5 id="运行环境">运行环境</h5>
+<p>Mac OS X &amp;&amp; Linux</p>
+<h5 id="安装">安装</h5>
+<p>Linux</p>
+<pre><code>sudo apt-get vim //这个版本自带lua和python3，免去自己编译的麻烦
+</code></pre><p>Mac</p>
+<pre><code>brew info vim //先看一下安装选项
+brew install vim --with-lua --with-override-system-vi  
+//我的系统安装的时候报错：ld: library not found for -lruby.2.5.1,由于我已经用brew安装了ruby，所以我做了一个软连接重新安装即可
+ln -s /usr/local/opt/ruby/lib/libruby.2.5.1.dylib /usr/local/lib/libruby.2.5.1.dylib
+</code></pre><h5 id="使用">使用</h5>
+<ol>
+<li>配置环境<br/>见我的github vim项目，最开始fork别人的配置再按自己需求修改的，用了一段时间之后切到了spf13-vim，很好很强大。</li>
+</ol>
 </section>
 </div>
 </div>
 </div>
-<a aria-label="Previous page: iTerm Mac终端" class="navigation navigation-prev navigation-unique" href="./iterm.html"><i class="fa fa-angle-left"></i></a>
+<a aria-label="Previous page: mit-scheme Lisp解释器" class="navigation navigation-prev " href="./mit-scheme.html"><i class="fa fa-angle-left"></i></a>
+<a aria-label="Next page: git 版本控制" class="navigation navigation-next " href="./git.html"><i class="fa fa-angle-right"></i></a>
 </div>
 </div>
 <script src="gitbook/app.js"></script>

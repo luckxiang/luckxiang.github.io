@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
-<title>Homebrew 包管理器 | 时雨大人的软件使用纪录</title>
+<title>git 版本控制 | 时雨大人的软件使用纪录</title>
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
 <meta content="" name="description"/>
 <meta content="GitBook 2.6.7" name="generator"/>
@@ -17,11 +17,11 @@
 <link href="gitbook/plugins/gitbook-plugin-highlight/website.css" rel="stylesheet"/>
 <link href="gitbook/plugins/gitbook-plugin-search/search.css" rel="stylesheet"/>
 <link href="gitbook/plugins/gitbook-plugin-fontsettings/website.css" rel="stylesheet"/>
-<link href="./cask.html" rel="next"/>
-<link href="./index.html" rel="prev"/>
+<link href="./gitbook.html" rel="next"/>
+<link href="./vim.html" rel="prev"/>
 </head>
 <body>
-<div class="book" data-basepath="." data-chapter-title="Homebrew 包管理器" data-filepath="homebrew.md" data-innerlanguage="" data-level="1" data-revision="Mon May 14 2018 22:57:35 GMT+0800 (CST)">
+<div class="book" data-basepath="." data-chapter-title="git 版本控制" data-filepath="git.md" data-innerlanguage="" data-level="5" data-revision="Thu May 17 2018 00:06:34 GMT+0800 (CST)">
 <div class="book-summary">
 <nav role="navigation">
 <ul class="summary">
@@ -32,7 +32,7 @@
                         Introduction
                     </a>
 </li>
-<li class="chapter active" data-level="1" data-path="homebrew.html">
+<li class="chapter " data-level="1" data-path="homebrew.html">
 <a href="./homebrew.html">
 <i class="fa fa-check"></i>
 <b>1.</b>
@@ -74,7 +74,7 @@
                         vim 编辑器
                     </a>
 </li>
-<li class="chapter " data-level="5" data-path="git.html">
+<li class="chapter active" data-level="5" data-path="git.html">
 <a href="./git.html">
 <i class="fa fa-check"></i>
 <b>5.</b>
@@ -140,6 +140,14 @@
                         Understand 程序静态分析
                     </a>
 </li>
+<li class="chapter " data-level="12" data-path="rufus-qi-dong-pan-zhi-zuo-gong-ju.html">
+<a href="./rufus-qi-dong-pan-zhi-zuo-gong-ju.html">
+<i class="fa fa-check"></i>
+<b>12.</b>
+                        
+                        rufus 启动盘制作工具
+                    </a>
+</li>
 <li class="divider"></li>
 <li>
 <a class="homepage-back" href="http://www.bigxiangbaobao.com/book/" target="_self">
@@ -161,54 +169,22 @@
 <div class="page-wrapper" role="main" tabindex="-1">
 <div class="page-inner">
 <section class="normal" id="section-">
-<h1 id="homebrew">Homebrew</h1>
-<p>Mac OS X 上最好用的包管理器，功能和linux 下的apt-get差不多，安装其他软件之前首先安装homebrew，居家旅行必备。</p>
-<hr/>
+<h1 id="git">git</h1>
+<p>版本控制工具，工作中svn和git都在使用。</p>
 <h5 id="运行环境">运行环境</h5>
-<p>Mac OS X</p>
+<p>Mac OS X &amp;&amp; Linux</p>
 <h5 id="安装">安装</h5>
-<ol>
-<li>先在应用商店装好Xcode</li>
-<li>安装Command Line Tools for Xcode，先跳过这步也可以，后边安装homebrew会提示安装此工具。</li>
-<li><p>安装homebrew  </p>
-<pre><code>ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-</code></pre></li>
-<li><p>执行命令检查安装是否ok</p>
-<pre><code>brew doctor
-</code></pre></li>
-</ol>
-<h5 id="使用">使用</h5>
-<ol>
-<li><p>安装软件<br/>更新homebrew自身-&gt;检查homebrew工作是否正常-&gt;搜索软件-&gt;检查软件信息，需要注意或者需要额外配置的地方-&gt;安装  </p>
-<pre><code>brew update
-brew doctor
-brew search foo
-brew info FORMULA
-brew install FORMULA
-"Some configuration"
-</code></pre></li>
-<li><p>卸载软件<br/>查看已安装软件列表-&gt;卸载需要卸载的软件包  </p>
-<pre><code>brew list
-brew uninstall FORMULA
-</code></pre></li>
-<li><p>更新软件<br/>更新homebrew自身-&gt;查看可更新软件列表-&gt;更新  </p>
-<pre><code>brew update
-brew outdated
-brew upgrade FORMULA
-</code></pre></li>
-<li><p>更新homebrew自身  </p>
-<pre><code>brew update
-</code></pre></li>
-<li><p>具体命令使用介绍</p>
-<pre><code>man brew
-</code></pre></li>
-</ol>
+<p>Linux</p>
+<pre><code>sudo apt-get git
+</code></pre><p>Mac</p>
+<pre><code>brew install git
+</code></pre><h5 id="使用">使用</h5>
 </section>
 </div>
 </div>
 </div>
-<a aria-label="Previous page: Introduction" class="navigation navigation-prev " href="./index.html"><i class="fa fa-angle-left"></i></a>
-<a aria-label="Next page: Homebrew Cask" class="navigation navigation-next " href="./cask.html"><i class="fa fa-angle-right"></i></a>
+<a aria-label="Previous page: vim 编辑器" class="navigation navigation-prev " href="./vim.html"><i class="fa fa-angle-left"></i></a>
+<a aria-label="Next page: gitbook 书写工具" class="navigation navigation-next " href="./gitbook.html"><i class="fa fa-angle-right"></i></a>
 </div>
 </div>
 <script src="gitbook/app.js"></script>

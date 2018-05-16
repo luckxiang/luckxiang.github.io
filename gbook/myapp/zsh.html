@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
-<title>apt-get 包管理器 | 时雨大人的软件使用纪录</title>
+<title>Zsh 终端shell | 时雨大人的软件使用纪录</title>
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
 <meta content="" name="description"/>
 <meta content="GitBook 2.6.7" name="generator"/>
@@ -17,11 +17,11 @@
 <link href="gitbook/plugins/gitbook-plugin-highlight/website.css" rel="stylesheet"/>
 <link href="gitbook/plugins/gitbook-plugin-search/search.css" rel="stylesheet"/>
 <link href="gitbook/plugins/gitbook-plugin-fontsettings/website.css" rel="stylesheet"/>
-<link href="./mit-scheme.html" rel="next"/>
-<link href="./cask.html" rel="prev"/>
+<link href="./iterm.html" rel="next"/>
+<link href="./bcompare.html" rel="prev"/>
 </head>
 <body>
-<div class="book" data-basepath="." data-chapter-title="apt-get 包管理器" data-filepath="apt-get.md" data-innerlanguage="" data-level="2" data-revision="Mon May 14 2018 22:57:35 GMT+0800 (CST)">
+<div class="book" data-basepath="." data-chapter-title="Zsh 终端shell" data-filepath="zsh.md" data-innerlanguage="" data-level="9" data-revision="Thu May 17 2018 00:06:34 GMT+0800 (CST)">
 <div class="book-summary">
 <nav role="navigation">
 <ul class="summary">
@@ -50,7 +50,7 @@
 </li>
 </ul>
 </li>
-<li class="chapter active" data-level="2" data-path="apt-get.html">
+<li class="chapter " data-level="2" data-path="apt-get.html">
 <a href="./apt-get.html">
 <i class="fa fa-check"></i>
 <b>2.</b>
@@ -116,7 +116,7 @@
                         Beyond Compare 文本比较
                     </a>
 </li>
-<li class="chapter " data-level="9" data-path="zsh.html">
+<li class="chapter active" data-level="9" data-path="zsh.html">
 <a href="./zsh.html">
 <i class="fa fa-check"></i>
 <b>9.</b>
@@ -140,6 +140,14 @@
                         Understand 程序静态分析
                     </a>
 </li>
+<li class="chapter " data-level="12" data-path="rufus-qi-dong-pan-zhi-zuo-gong-ju.html">
+<a href="./rufus-qi-dong-pan-zhi-zuo-gong-ju.html">
+<i class="fa fa-check"></i>
+<b>12.</b>
+                        
+                        rufus 启动盘制作工具
+                    </a>
+</li>
 <li class="divider"></li>
 <li>
 <a class="homepage-back" href="http://www.bigxiangbaobao.com/book/" target="_self">
@@ -161,40 +169,41 @@
 <div class="page-wrapper" role="main" tabindex="-1">
 <div class="page-inner">
 <section class="normal" id="section-">
-<h1 id="aptget">apt-get</h1>
-<p>Linux下的包管理工具，必需要掌握的linux命令之一。</p>
+<h1 id="zsh-终端shell">Zsh 终端shell</h1>
+<p>Zsh是一款强大的shell工具，可以帮助你高效编写和执行命令，bash替代品。使用前需要配置，不然很难用。</p>
 <hr/>
 <h5 id="运行环境">运行环境</h5>
-<p>Linux</p>
+<p>Mac OS X &amp;&amp; Linux</p>
 <h5 id="安装">安装</h5>
-<p>linux自带</p>
-<h5 id="使用">使用</h5>
-<ol>
-<li><p>安装软件</p>
-<pre><code>sudo apt-get update
-sudo apt-cache search FORMULA
-sudo apt-get install FORMULA
-</code></pre><ol>
-<li>卸载软件<pre><code>sudo apt-get uninstall FORMULA
-</code></pre></li>
-</ol>
-</li>
-<li><p>更新软件</p>
-<pre><code>sudo apt-get update
-sudo apt-get -u upgrade
-</code></pre></li>
-<li><p>具体命令使用介绍</p>
-<pre><code>apt-get help
-</code></pre><p>或</p>
-<pre><code>man apt-get
-</code></pre></li>
-</ol>
+<p>Linux  </p>
+<pre><code>sudo apt-get install zsh
+</code></pre><p>Mac</p>
+<pre><code>brew install zsh
+</code></pre><h5 id="使用">使用</h5>
+<p>切换到zsh  </p>
+<pre><code>chsh -s /bin/zsh
+</code></pre><p>配置，安装oh-my-zsh  </p>
+<pre><code>sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+cp ~/.zshrc ~/.zshrc.orig
+cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
+</code></pre><p>autojump插件必须添加，zsh和autojump组合才是最强王者。先下载   </p>
+<p>Linux</p>
+<pre><code>sudo apt-get install autojump
+</code></pre><p>mac</p>
+<pre><code>brew install autojump
+</code></pre><p>然后把以下代码添加到.zshrc   </p>
+<pre><code>[[ -s ~/.autojump/etc/profile.d/autojump.sh ]] &amp;&amp; . ~/.autojump/etc/profile.d/autojump.sh
+</code></pre><p>最后添加需要的插件 ，打开配置文件.zshrc，参考如下修改  </p>
+<pre><code>plugins=(git osx autojump)
+</code></pre><p>修改完毕执行  </p>
+<pre><code>source ~/.zshrc
+</code></pre><p>详细配置信息见<a href="https://github.com/robbyrussell/oh-my-zsh" target="_blank">oh-my-zsh</a></p>
 </section>
 </div>
 </div>
 </div>
-<a aria-label="Previous page: Homebrew Cask" class="navigation navigation-prev " href="./cask.html"><i class="fa fa-angle-left"></i></a>
-<a aria-label="Next page: mit-scheme Lisp解释器" class="navigation navigation-next " href="./mit-scheme.html"><i class="fa fa-angle-right"></i></a>
+<a aria-label="Previous page: Beyond Compare 文本比较" class="navigation navigation-prev " href="./bcompare.html"><i class="fa fa-angle-left"></i></a>
+<a aria-label="Next page: iTerm Mac终端" class="navigation navigation-next " href="./iterm.html"><i class="fa fa-angle-right"></i></a>
 </div>
 </div>
 <script src="gitbook/app.js"></script>
