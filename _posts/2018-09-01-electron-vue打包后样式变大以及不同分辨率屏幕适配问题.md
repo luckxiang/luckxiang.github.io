@@ -21,4 +21,4 @@ var zoomFactor = (window.innerHeight / devInnerHeight) * (window.devicePixelRati
 require('electron').webFrame.setZoomFactor(zoomFactor)
 ```
 
-简单解释一下, zoomFactor就是缩放比例了,你把devInnerHeight设置成你开发时设置的electron窗体分辨率,(比如我用的1920 * 1080),然后调节devScaleFactor达到自己想要的效果即可
+简单解释一下, zoomFactor就是缩放比例了,你把devInnerHeight设置成你开发时设置的electron窗体分辨率的height,(比如我用的1920 * 1080),然后调节devScaleFactor达到自己想要的效果即可
