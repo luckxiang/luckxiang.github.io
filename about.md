@@ -2,12 +2,12 @@
 layout: page
 title: "About"
 description: "简洁＊精致 "
-header-img: "http://7xs8go.com1.z0.glb.clouddn.com/semantic.jpg"
+header-img: "https://i.loli.net/2018/10/30/5bd7be892d6b9.jpg"
 ---
 
 
 <center>
-    <p><img src="http://7xs8go.com1.z0.glb.clouddn.com/bigxiang.png" align="center"></p>
+    <p><img src="https://i.loli.net/2018/10/30/5bd7be54da44d.png" align="center"></p>
 </center>
 
 我是时雨大人，曾在IC公司担任软件研发，核心大客户的技术支持工作。目前创业，负责产品和技术,帮助公司产品实现物联网化。从事过loader，驱动，内核，应用，高级安全等开发支持工作。
