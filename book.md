@@ -1,7 +1,7 @@
 ---
 layout: page
 title: "Book"
-description: "战战兢兢，如履薄冰，如临深渊   "
+description: "精神纯净"
 header-img: "https://i.loli.net/2018/10/30/5bd7be895a286.jpg"
 ---
 

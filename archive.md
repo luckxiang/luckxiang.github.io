@@ -1,7 +1,7 @@
 ---
 layout: page
 title: "Archive"
-description: "君问归期未有期，巴山夜雨涨秋池"
+description: "生活简朴"
 header-img: "https://i.loli.net/2018/10/30/5bd7be5530a47.jpg"
 ---
 
