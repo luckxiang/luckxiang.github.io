@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 推荐Richard Blum编著的<汇编语言程序设计>
+title: 推荐Richard Blum编著的《汇编语言程序设计》
 date: 2018-12-17
 categories: blog
 tags: [随笔]
