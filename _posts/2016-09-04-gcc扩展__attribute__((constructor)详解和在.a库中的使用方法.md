@@ -24,7 +24,7 @@ void func() __attribute__((constructor));
 ```
 #define INITIALIZER(f) \
    static void f(void) __attribute__((constructor)); \
-   static void f(void)
+   static void f(void)               
 
 #define FAP_REGISTER(name)                                              \
   INITIALIZER(fap_register_ ## name) {                                  \
