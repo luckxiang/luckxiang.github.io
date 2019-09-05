@@ -46,13 +46,6 @@ defaults:
       author: "LuckXiang"
       header-img: "https://i.loli.net/2018/10/30/5bd7be5543b53.jpg" # We don't want posts without a header image, that whould mean white on white
 
-# Commentsco 
-comments :
-  provider : duoshuo
-  duoshuo :
-    short_name : 
-  disqus :
-      short_name : 
 
 # Analytics and webmaster tools stuff goes here
 google_analytics: 
