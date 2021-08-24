@@ -10,10 +10,12 @@ description:
 ## 0x00 需求场景
 在嵌入式日常开发中，我们经常会遇到多编码规范的场景，比如团队A和团队B采用了不同的编码规范，内核代码和应用代码采用不同的编码规范，三方库A和三方库B采用了不同的编码规范。如果我们的工作涉及到以上场景，开发团队对代码的质量又有所追求，
 那么编码规范的切换将是一个痛苦的问题。根据我的经验，我整理了如下需求：
+
 - 开发者应该把精力放在开发工作上，采用自己习惯的编码规范工作，通过工具统一格式化代码，并把格式化排版引入开发流程中。
 - 格式化排版工具要支持只针对修改补丁进行格式化，避免在维护代码的时候引入过多无关的修改。
 - 格式化排版工具要容易集成，可以适配多种常见的编辑器。
 - 格式化排版工具的配置要具有可读性，方便针对不同项目进行修改和维护。
+- 可以在代码中灵活的禁用格式化，解决部分屎山代码格式化后变得更糟糕的问题。
 
 ## 0x01 clang-format介绍
 根据上述需求，对比了网上多种格式化排版工具，我最终选择了clang-format工具。
@@ -103,13 +105,13 @@ Generic Options:
   --version                  - Display the version of this program
 ```
 
-通过指定`--style=file`，我们可以修改一个.clang-format文件来指定我们的编码排版规范，可用的样式选项在[Clang-Format 样式选项](https://clang.llvm.org/docs/ClangFormatStyleOptions.html)中描述。此外，官网还描述了多种编辑器的集成方法以及补丁格式化排版方法，在此不再赘述。
+通过指定`--style=file`，我们可以修改一个`.clang-format`文件来指定我们的编码排版规范，可用的样式选项在[Clang-Format 样式选项](https://clang.llvm.org/docs/ClangFormatStyleOptions.html)中描述。此外，官网还描述了多种编辑器的集成方法以及补丁格式化排版方法，在此不再赘述。
 
 ## 0x02 clang-format安装
 
 ### Windows：
 
-去官网https://llvm.org/builds/下载相应的版本，点击安装即可
+去官网https://llvm.org/builds/下载相应的版本，点击安装即可。
 
 ### mac:
 
@@ -125,7 +127,7 @@ brew install clang-format
 sudo apt-get install clang-format
 ```
 
-方法二
+方法二:
 
 方法一安装的版本由于镜像源的原因，有可能版本会比较低，让人觉得不舒服，那么可以采用方法二来做：
 
@@ -181,8 +183,8 @@ sudo ln -s /usr/bin/clang-format-diff-13 /usr/bin/clang-format-diff
 
 ## 0x03 clang-format使用
 
-- 各个项目的编码规范制定人员完成.clang-format的编辑，并放入项目的顶层目录。
-
+- 各个项目的编码规范制定人员完成`.clang-format`的编辑，并放入项目的顶层目录。
+- 检查老代码，可以根据自己项目情况，（这里要特别小心评估代码大范围变动的影响）把格式强制刷一遍，或者只是对一些格式化后无法对齐的代码禁用格式化，`clang-format off`,`clang-format on`。
 - 如果要求强制检测提交补丁的编码排版格式，则可以让管理员在服务端做一个pre-check，不符合规范的代码不允许提交。
 
 - 开发人员安装clang-format工具，并把工具集成到版本管理工具中，官网有命令可以参考。我采用的集成方式如下，在.gitconfig中添加如下命令：
@@ -193,7 +195,7 @@ sudo ln -s /usr/bin/clang-format-diff-13 /usr/bin/clang-format-diff
   
   ```
 
-- `git clang-format-cached` 命令对暂存区的修改补丁进行格式化，而 `git clang-format-head`则对commit提交进行格式化。我喜欢手动格式化以后检查再提交，开发人员可以根据自己的需求修改执行命令
+- `git clang-format-cached` 命令对暂存区的修改补丁进行格式化，而 `git clang-format-head`则对commit提交进行格式化。我喜欢手动格式化以后检查再提交，开发人员可以根据自己的需求修改执行命令。
 
   **tips**: `clang-format`可以根据文件路径路径，自动从位于输入文件的最近父目录中的文件往前搜索`.clang-format`配置，因此只需要在相关项目的顶层目录放置一份配置即可。如果有子项目，则只需要在子项目中放置一份配置即可覆盖父项目的配置。
 
